@@ -37,7 +37,7 @@ const deleteOne = async (req, res) => {
   if (!result) {
     throw HttpError(404);
   }
-  res.json({ message: "Card deleted" });
+  res.status(204).json({ message: "Card deleted" });
 };
 
 export default { getAll, addOne, updateOne, deleteOne };
