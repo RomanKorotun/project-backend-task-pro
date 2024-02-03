@@ -21,7 +21,7 @@ authRouter.post("/signin", validateBody(userLogSchema), userSigIn);
 
 authRouter.post("/logout", authenticate, logOut);
 
-// authRouter.get("/current", authControllers.userCurrent);
+//authRouter.get("/current");
 
 // authRouter.put("/", authControllers.userUpdate);
 

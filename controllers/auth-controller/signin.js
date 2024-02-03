@@ -15,9 +15,7 @@ const userSigIn = async (req, res, next) => {
 
   const passwordCompare = await bcryptjs.compare(password, user.password); // перевірка валідності паролю
   if (!passwordCompare) {
-    return res.status(401).json({
-      message: "Email or password is wrong",
-    });
+    return next(HttpError(401, "Email or password is wrong"));
   }
   const payload = {
     id: user._id,
@@ -29,7 +27,11 @@ const userSigIn = async (req, res, next) => {
 
   res.json({
     token: token,
-    user: { email: user.email },
+    user: {
+      userName: user.userName,
+      email: user.email,
+      avatarURl: user.avatarURl,
+    },
   });
 };
 
