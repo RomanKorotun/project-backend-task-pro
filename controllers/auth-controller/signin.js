@@ -10,7 +10,7 @@ const userSigIn = async (req, res, next) => {
   const user = await User.findOne({ email }); //перевірка наявності юзера з таким email-ом
 
   if (!user) {
-    return next(HttpError(401, "Email or password is wrong"));
+    return next(HttpError(401, "Your Email or password is wrong"));
   }
 
   const passwordCompare = await bcryptjs.compare(password, user.password); // перевірка валідності паролю
@@ -30,7 +30,7 @@ const userSigIn = async (req, res, next) => {
     user: {
       userName: user.userName,
       email: user.email,
-      avatarURl: user.avatarURl,
+      avatarURl: user.avatarURL,
     },
   });
 };
