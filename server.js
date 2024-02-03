@@ -12,7 +12,7 @@ mongoose
       console.log(`Server running. Use our API on port: ${PORT}`);
     });
   })
-  .catch(() => {
+  .catch((err) => {
     console.log(err.message);
     process.exit(1);
   });
