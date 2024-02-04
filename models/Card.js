@@ -55,6 +55,10 @@ export const cardUpdateSchema = Joi.object({
   deadline: Joi.string(),
 });
 
+export const switchColumnSchema = Joi.object({
+  owner: Joi.string().required(),
+});
+
 const Card = model("card", cardSchema);
 
 export default Card;

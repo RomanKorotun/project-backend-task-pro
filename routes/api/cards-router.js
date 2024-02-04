@@ -1,30 +1,52 @@
 import express from "express";
 
-import cardsController from "../../controllers/cards-controller/index.js";
+import {
+  getAllCards,
+  getByIdCard,
+  addCard,
+  updateCard,
+  switchCardColumn,
+  deleteCard,
+} from "../../controllers/cards-controller/index.js";
 
 import { isEmptyBody, isValidId } from "../../middleware/index.js";
 import { validateBody } from "../../decorators/validateBody.js";
-import { cardAddSchema, cardUpdateSchema } from "../../models/Card.js";
+import {
+  cardAddSchema,
+  cardUpdateSchema,
+  switchColumnSchema,
+} from "../../models/Card.js";
+import ctrlWrapper from "../../decorators/ctrlWrapper.js";
 
 const cardsRouter = express.Router();
 
-cardsRouter.get("/", cardsController.getAll);
+cardsRouter.get("/:idColumn", ctrlWrapper(getAllCards));
+
+cardsRouter.get("/:idColumn/:id", isValidId, ctrlWrapper(getByIdCard));
 
 cardsRouter.post(
-  "/",
+  "/:idColumn",
   isEmptyBody,
   validateBody(cardAddSchema),
-  cardsController.addOne
+  ctrlWrapper(addCard)
 );
 
 cardsRouter.put(
-  "/:id",
+  "/:idColumn/:id",
   isValidId,
-  validateBody(cardUpdateSchema),
   isEmptyBody,
-  cardsController.updateOne
+  validateBody(cardUpdateSchema),
+  ctrlWrapper(updateCard)
 );
 
-cardsRouter.delete("/:id", isValidId, cardsController.deleteOne);
+cardsRouter.patch(
+  "/:idColumn/:id",
+  isValidId,
+  isEmptyBody,
+  validateBody(switchColumnSchema),
+  ctrlWrapper(switchCardColumn)
+);
+
+cardsRouter.delete("/:idColumn/:id", isValidId, ctrlWrapper(deleteCard));
 
 export default cardsRouter;
