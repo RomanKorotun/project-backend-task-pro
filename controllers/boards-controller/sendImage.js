@@ -19,8 +19,10 @@ cloudinary.config({
 const deleteFile = async (pathFile) => {
   await fs.unlink(pathFile);
 };
+
 const writeImageToFile = async (pathFile) => {
-  imageArray;
+ imageArray.sort((firstImage,secondImage)=>firstImage.id-secondImage.id);
+  console.log('imageArray', imageArray)
   const jsonData = JSON.stringify(imageArray, null, 2);
   await fs.appendFile(pathFile, jsonData);
 };
@@ -49,13 +51,22 @@ const sendCloudinary = async (file, id) => {
   deleteFile(pathImgSourse);
 };
 
+// const sendPhoto1 = async (req, res) => {
+//   req.files.map((file, index) => {
+//     sendCloudinary(file, index + 1);
+//   });
+//   writeImageToFile(pathListImg);
+//   res.json({ message: "file upload" });
+// };
+
 const sendPhoto1 = async (req, res) => {
-  req.files.map((file, index) => {
-    sendCloudinary(file, index + 1);
-  });
-  writeImageToFile(pathListImg);
+  await Promise.all(req.files.map(async (file, index) => {
+    await sendCloudinary(file, index + 1);
+  }));
+  await writeImageToFile(pathListImg);
   res.json({ message: "file upload" });
 };
 
 const sendPhoto = ctrlWrapper(sendPhoto1);
 export default sendPhoto;
+
