@@ -1,8 +1,9 @@
 import { Schema, model } from "mongoose";
 import Joi from "joi";
+import { handleSaveError, setUpdateSettings } from "./hooks.js";
 
 const dashboardSchema = new Schema({
-    tytle: {
+    title: {
       type: String,
       required: true,
     },
@@ -21,13 +22,21 @@ const dashboardSchema = new Schema({
       },
   });
 
+  // хук зміни статусу помилки при запису
+  dashboardSchema.post("save", handleSaveError);
+  // хук зміни налаштувань (оновлення та валідації) перед  оновленням документу
+  dashboardSchema.pre("findOneAndUpdate", setUpdateSettings);
+  // хук зміни статусу помилки при оновленні
+  dashboardSchema.post("findOneAndUpdate", handleSaveError);
+  //
+
  export  const dashboardAddSchema = Joi.object({
-    tytle: Joi.string().required(),
+    title: Joi.string().required(),
     icons: Joi.string().required(),
     background: Joi.string().required(),
   });
 export  const dashboarUpdateSchema = Joi.object({
-    tytle: Joi.string(),
+    title: Joi.string(),
     icons: Joi.string(),
     background: Joi.string(),
   });  
