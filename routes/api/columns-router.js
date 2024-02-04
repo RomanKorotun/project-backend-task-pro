@@ -2,6 +2,7 @@ import express from "express";
 import { authenticate } from "../../middleware/index.js";
 import { isEmptyBody, isValidId } from "../../middleware/index.js";
 import { validateBody } from "../../decorators/validateBody.js";
+import ctrlWrapper from "../../decorators/ctrlWrapper.js";
 import { columnJoiSchema } from "../../models/Column.js";
 import {
   addColumn,
@@ -14,18 +15,22 @@ const columnsRouter = express.Router();
 
 columnsRouter.use(authenticate);
 
-columnsRouter.get("/", getAllColumns);
+columnsRouter.get("/:idBoard", ctrlWrapper(getAllColumns));
 
-columnsRouter.post("/", isEmptyBody, validateBody(columnJoiSchema), addColumn);
+columnsRouter.post(
+  "/:idBoard",
+  isEmptyBody,
+  validateBody(columnJoiSchema),
+  ctrlWrapper(addColumn)
+);
 
 columnsRouter.put(
   "/:id",
-  isValidId,
   isEmptyBody,
   validateBody(columnJoiSchema),
-  updateByIdColumn
+  ctrlWrapper(updateByIdColumn)
 );
 
-columnsRouter.delete("/:id", isValidId, deleteByIdColumn);
+columnsRouter.delete("/:id", isValidId, ctrlWrapper(deleteByIdColumn));
 
 export default columnsRouter;
