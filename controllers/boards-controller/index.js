@@ -1,1 +1,6 @@
-export {default as sendPhoto} from "./sendImage"
+export {default as sendPhoto} from "./sendImage.js"
+export {default as addBoard} from "./addBoard.js"
+export {default as getAllBoards} from "./getBoards.js"
+export {default as getByIdBoard} from "./getByIdBoard.js"
+export {default as updateBoard} from "./updateBoard.js"
+export {default as removeBoard} from "./removeBoard.js"
