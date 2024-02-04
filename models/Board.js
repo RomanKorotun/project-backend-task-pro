@@ -21,5 +21,16 @@ const dashboardSchema = new Schema({
       },
   });
 
+ export  const dashboardAddSchema = Joi.object({
+    tytle: Joi.string().required(),
+    icons: Joi.string().required(),
+    background: Joi.string().required(),
+  });
+export  const dashboarUpdateSchema = Joi.object({
+    tytle: Joi.string(),
+    icons: Joi.string(),
+    background: Joi.string(),
+  });  
+  const BoardModel = model("board", dashboardSchema);
 
-  
+  export default BoardModel ;
