@@ -7,6 +7,9 @@ import { validateBody } from "../../decorators/validateBody.js";
 import userSigIn from "../../controllers/auth-controller/signin.js";
 import logOut from "../../controllers/auth-controller/logout.js";
 import authenticate from "../../middleware/authenticate.js";
+import currentUser from "../../controllers/auth-controller/current.js";
+import updateUser from "../../controllers/auth-controller/updateUser.js";
+//import upDateAvatar from "../../controllers/auth-controller/updateAvatar.js";
 
 const authRouter = express.Router();
 
@@ -17,16 +20,16 @@ authRouter.post(
   userRegister
 );
 
-authRouter.post("/signin", validateBody(userLogSchema), userSigIn);
+authRouter.post("/signin", isEmptyBody, validateBody(userLogSchema), userSigIn);
 
 authRouter.post("/logout", authenticate, logOut);
 
-//authRouter.get("/current");
+authRouter.get("/current", authenticate, currentUser);
 
-// authRouter.put("/", authControllers.userUpdate);
+authRouter.put("/", authenticate, updateUser);
 
-// authRouter.patch("/avatars", authControllers.userUpdateAvatar);
+//authRouter.patch("/avatars", authenticate, upDateAvatar);
 
-// authRouter.patch("/themes");
+// authRouter.patch("/theme");
 
 export default authRouter;
