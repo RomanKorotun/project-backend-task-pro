@@ -6,6 +6,7 @@ import {
   boardsRouter,
   columnsRouter,
   cardsRouter,
+  helpRouter,
 } from "./routes/api/index.js";
 
 const app = express();
@@ -20,6 +21,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/boards", boardsRouter);
 app.use("/api/columns", columnsRouter);
 app.use("/api/cards", cardsRouter);
+app.use("/api/help", helpRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
