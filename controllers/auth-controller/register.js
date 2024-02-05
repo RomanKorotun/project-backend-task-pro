@@ -1,4 +1,3 @@
-import ctrlWrapper from "../../decorators/ctrlWrapper.js";
 import HttpError from "../../helpers/HttpError.js";
 import { User } from "../../models/User.js";
 import bcryptjs from "bcryptjs";

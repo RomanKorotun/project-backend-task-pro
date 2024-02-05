@@ -1,4 +1,3 @@
-import HttpError from "../../helpers/HttpError.js";
 import { User } from "../../models/User.js";
 import bcryptjs from "bcryptjs";
 
@@ -19,6 +18,10 @@ const updateUser = async (req, res) => {
       { _id: userId }, // Умова пошуку
       newUserData
     );
+
+    if (!result) {
+      throw HttpError(404, `User with ${userId} not found. Please repeat.`);
+    }
 
     const { userName, email } = result;
 

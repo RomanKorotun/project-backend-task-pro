@@ -5,8 +5,6 @@ const updateTheme = async (req, res) => {
   try {
     const { _id: userId, theme } = req.user;
 
-    console.log("req.user :>> ", req.user.theme);
-
     const result = await User.findOneAndUpdate(
       { _id: userId, theme },
       req.body
