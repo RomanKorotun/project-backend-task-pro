@@ -10,7 +10,7 @@ const columnSchema = new Schema(
       type: String,
       required: true,
     },
-    board: {
+    owner: {
       type: Schema.Types.ObjectId,
       ref: "board",
       required: true,

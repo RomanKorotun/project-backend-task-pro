@@ -2,7 +2,7 @@ import { HttpError } from "../../helpers/index.js";
 import Column from "../../models/Column.js";
 
 const deleteByIdColumn = async (req, res) => {
-  const { id: _id } = req.params;
+  const { id } = req.params;
   const deleteColumn = await Column.findByIdAndDelete(id);
   if (deleteColumn === null) {
     throw HttpError(404);
