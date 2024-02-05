@@ -25,12 +25,13 @@ columnsRouter.post(
 );
 
 columnsRouter.patch(
-  "/:id",
+  "/:idBoard/:id",
+  isValidId,
   isEmptyBody,
   validateBody(columnJoiSchema),
   ctrlWrapper(updateByIdColumn)
 );
 
-columnsRouter.delete("/:id", isValidId, ctrlWrapper(deleteByIdColumn));
+columnsRouter.delete("/:idBoard/:id", isValidId, ctrlWrapper(deleteByIdColumn));
 
 export default columnsRouter;
