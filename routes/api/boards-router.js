@@ -9,7 +9,7 @@ import authenticate from "../../middleware/authenticate.js";
 
 const boardsRouter = express.Router();
 boardsRouter.use(authenticate);
-boardsRouter.patch("/",upload.array("images",45), sendPhoto);
+boardsRouter.get("/",upload.array("images",45), sendPhoto);
 boardsRouter.get("/", getAllBoards);
 boardsRouter.get("/:id",isValidId, getByIdBoard);
 boardsRouter.post("/",isEmptyBody,validateBody(dashboardAddSchema), addBoard);
