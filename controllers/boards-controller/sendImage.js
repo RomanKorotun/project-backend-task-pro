@@ -2,7 +2,7 @@ import { v2 as cloudinary } from "cloudinary";
 import fs from "fs/promises";
 import dotenv from "dotenv";
 import path from "path";
-import ctrlWrapper from "../../decorators/ctrlWrapper.js";
+
 
 dotenv.config();
 
@@ -27,7 +27,7 @@ const deleteFile = async (pathFile) => {
 const getPathFileJSON = (typeDev, extFile) => {
   return path.join(path.resolve("images"), `${typeDev}_${extFile}.json`);
 };
-//const pathListImg =
+
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //записуємо обєкт картинки в файл Json
 const writeImageToFile = async (pathFile,imageArray) => {
@@ -102,7 +102,7 @@ const sendCloudinary = async (file, ind,imageArray) => {
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //Надсилаємо фото
-const sendPhoto1 = async (req, res) => {
+const sendPhoto = async (req, res) => {
   const imageArray = [];
   let pathListImg = "";
   await Promise.all(
@@ -114,7 +114,7 @@ const sendPhoto1 = async (req, res) => {
   res.json({ message: "file upload" });
 };
 
-const sendPhoto = ctrlWrapper(sendPhoto1);
+
 
 export default sendPhoto;
 

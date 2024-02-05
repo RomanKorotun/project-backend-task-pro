@@ -3,43 +3,44 @@ import Joi from "joi";
 import { handleSaveError, setUpdateSettings } from "./hooks.js";
 
 const dashboardSchema = new Schema({
-    title: {
-      type: String,
-      required: true,
-    },
-    icons: {
-      type: String,
-      required: [true],
-    },
-    background: {
-      type: String,
-      required: [true],
-    
-    },
-    owner: {
-        type: Schema.Types.ObjectId,
-        ref: 'user',
-      },
-  });
+  title: {
+    type: String,
+    required: true,
+  },
+  icnboard: {
+    type: String,
+    required: true,
+  },
+  background: {
+    type: String,
+    required: true,
+  },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+    required: true,
+  },
+},
+{ versionKey: false, timestamps: true });
 
-  // хук зміни статусу помилки при запису
-  dashboardSchema.post("save", handleSaveError);
-  // хук зміни налаштувань (оновлення та валідації) перед  оновленням документу
-  dashboardSchema.pre("findOneAndUpdate", setUpdateSettings);
-  // хук зміни статусу помилки при оновленні
-  dashboardSchema.post("findOneAndUpdate", handleSaveError);
-  //
+// хук зміни статусу помилки при запису
+dashboardSchema.post("save", handleSaveError);
+// хук зміни налаштувань (оновлення та валідації) перед  оновленням документу
+dashboardSchema.pre("findOneAndUpdate", setUpdateSettings);
+// хук зміни статусу помилки при оновленні
+dashboardSchema.post("findOneAndUpdate", handleSaveError);
+//
 
- export  const dashboardAddSchema = Joi.object({
-    title: Joi.string().required(),
-    icons: Joi.string().required(),
-    background: Joi.string().required(),
-  });
-export  const dashboarUpdateSchema = Joi.object({
-    title: Joi.string(),
-    icons: Joi.string(),
-    background: Joi.string(),
-  });  
-  const BoardModel = model("board", dashboardSchema);
+export const dashboardAddSchema = Joi.object({
+  title: Joi.string().required(),
+  icnboard: Joi.string().required(),
+  background: Joi.string().required(),
+});
+export const dashboarUpdateSchema = Joi.object({
+  title: Joi.string(),
+  icnboard: Joi.string(),
+  background: Joi.string(),
+});
+const BoardModel = model("board", dashboardSchema);
 
-  export default BoardModel ;
+export default BoardModel;
