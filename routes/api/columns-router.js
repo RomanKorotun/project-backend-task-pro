@@ -24,7 +24,7 @@ columnsRouter.post(
   ctrlWrapper(addColumn)
 );
 
-columnsRouter.put(
+columnsRouter.patch(
   "/:id",
   isEmptyBody,
   validateBody(columnJoiSchema),

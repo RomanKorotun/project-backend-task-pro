@@ -1,8 +1,8 @@
 import Column from "../../models/Column.js";
 
 const getAllColumns = async (req, res) => {
-  const { idBoard: board } = req.params;
-  const allColumns = await Column.find({ board }).populate("board", "title");
+  const { idBoard: owner } = req.params;
+  const allColumns = await Column.find({ owner });
   res.json(allColumns);
 };
 export default getAllColumns;
