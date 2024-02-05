@@ -8,6 +8,7 @@ import {
   addColumn,
   deleteByIdColumn,
   getAllColumns,
+  getByIdColumn,
   updateByIdColumn,
 } from "../../controllers/columns-controller/index.js";
 
@@ -16,6 +17,8 @@ const columnsRouter = express.Router();
 columnsRouter.use(authenticate);
 
 columnsRouter.get("/:idBoard", ctrlWrapper(getAllColumns));
+
+columnsRouter.get("/:idBoard/:id", isValidId, ctrlWrapper(getByIdColumn));
 
 columnsRouter.post(
   "/:idBoard",
