@@ -2,7 +2,7 @@ import HttpError from "../../helpers/HttpError.js";
 import { User } from "../../models/User.js";
 import bcryptjs from "bcryptjs";
 
-const updateUser = async (req, res, next) => {
+const updateUser = async (req, res) => {
   try {
     const { _id: userId } = req.user;
 
@@ -17,8 +17,7 @@ const updateUser = async (req, res, next) => {
 
     const result = await User.findOneAndUpdate(
       { _id: userId }, // Умова пошуку
-      newUserData,
-      { new: true } // Повертати оновлений документ
+      newUserData
     );
 
     const { userName, email } = result;

@@ -5,17 +5,36 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 const { JWT_SECRET } = process.env;
 
-const userSigIn = async (req, res, next) => {
+const userSigIn = async (req, res) => {
   const { email, password } = req.body;
+
   const user = await User.findOne({ email }); //перевірка наявності юзера з таким email-ом
 
+  const avatarLight =
+    "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/lt_user.jpg";
+  const avatarDark =
+    "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/dk_user.jpg";
+  const avatarViolet =
+    "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/vl_user.jpg";
+
+  switch (user.theme) {
+    case "dark":
+      user.avatarURL = avatarDark;
+      break;
+    case "violet":
+      user.avatarURL = avatarViolet;
+      break;
+    default:
+      user.avatarURL = avatarLight;
+  }
+
   if (!user) {
-    return next(HttpError(401, "Your Email or password is wrong"));
+    throw HttpError(401, "Your Email or password is wrong");
   }
 
   const passwordCompare = await bcryptjs.compare(password, user.password); // перевірка валідності паролю
   if (!passwordCompare) {
-    return next(HttpError(401, "Email or password is wrong"));
+    throw HttpError(401, "Your Email or password is wrong");
   }
   const payload = {
     id: user._id,
@@ -31,6 +50,7 @@ const userSigIn = async (req, res, next) => {
       userName: user.userName,
       email: user.email,
       avatarURl: user.avatarURL,
+      theme: user.theme,
     },
   });
 };
