@@ -1,4 +1,4 @@
-import HttpError from "../../helpers/HttpError.js";
+import { HttpError } from "../../helpers/index.js";
 import Column from "../../models/Column.js";
 
 const getByIdColumn = async (req, res) => {
