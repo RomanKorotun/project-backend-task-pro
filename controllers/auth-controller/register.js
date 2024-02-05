@@ -1,19 +1,21 @@
 import HttpError from "../../helpers/HttpError.js";
 import { User } from "../../models/User.js";
 import bcryptjs from "bcryptjs";
-//import { nanoid } from "nanoid";
 
-const userRegister = async (req, res, next) => {
+const signUp = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
 
   if (user) {
-    return next(HttpError(409, "Email in use"));
+    throw HttpError(409, "Email in use");
   }
 
   const hashPassword = await bcryptjs.hash(password, 10);
-  const avatarURL = "avatarUrl";
+
+  //дефолтний аватар для світлої
+  const avatarURL =
+    "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/lt_user.jpg";
 
   const newUser = await User.create({
     ...req.body,
@@ -28,4 +30,5 @@ const userRegister = async (req, res, next) => {
     },
   });
 };
-export default userRegister;
+
+export default signUp;

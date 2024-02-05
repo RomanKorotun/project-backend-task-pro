@@ -9,11 +9,13 @@ const authenticate = async (req, res, next) => {
   if (!authorization) {
     return next(HttpError(401, "Authorization not define!"));
   }
+
   //перевірка чи є в рядку хедер слово bearer та токен
   const [bearer, token] = authorization.split(" ");
   if (bearer !== "Bearer") {
     return next(HttpError(401, "Authorization row not valid"));
   }
+
   //перевірка токена на валідність
   try {
     const { id } = jwt.verify(token, JWT_SECRET);
