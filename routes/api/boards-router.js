@@ -6,13 +6,14 @@ import {addBoard, getAllBoards,getByIdBoard,updateBoard,removeBoard}from "../../
 import { validateBody } from "../../decorators/validateBody.js";
 import { dashboarUpdateSchema, dashboardAddSchema } from "../../models/Board.js";
 import authenticate from "../../middleware/authenticate.js";
+import ctrlWrapper from "../../decorators/ctrlWrapper.js";
 
 const boardsRouter = express.Router();
 boardsRouter.use(authenticate);
-boardsRouter.get("/",upload.array("images",45), sendPhoto);
-boardsRouter.get("/", getAllBoards);
-boardsRouter.get("/:id",isValidId, getByIdBoard);
-boardsRouter.post("/",isEmptyBody,validateBody(dashboardAddSchema), addBoard);
+boardsRouter.get("/uploadimg",upload.array("images",45), ctrlWrapper(sendPhoto));
+boardsRouter.get("/", ctrlWrapper(getAllBoards));
+boardsRouter.get("/:id",isValidId, ctrlWrapper(getByIdBoard));
+boardsRouter.post("/",isEmptyBody,validateBody(dashboardAddSchema), ctrlWrapper(addBoard));
 boardsRouter.put(
     "/:id",
     isValidId,
@@ -20,6 +21,6 @@ boardsRouter.put(
     validateBody(dashboarUpdateSchema),
     updateBoard
   );
-  boardsRouter.delete("/:id", isValidId, removeBoard);
+  boardsRouter.delete("/:id", isValidId, ctrlWrapper(removeBoard));
 
 export default boardsRouter;

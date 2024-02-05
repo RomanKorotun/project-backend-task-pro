@@ -1,3 +1,4 @@
+import HttpError from "../../helpers/HttpError.js";
 import BoardModel from "../../models/Board.js";
 
 const getByIdBoard = async (req, res) => {
@@ -5,7 +6,7 @@ const getByIdBoard = async (req, res) => {
     const board = await BoardModel.findOne({
       _id: id,
       owner: req.user._id,
-    });
+    }).populate("owner","userName email");;
     if (!board) {
       throw HttpError(404, ` Contact with id = ${id} not found`);
     }
