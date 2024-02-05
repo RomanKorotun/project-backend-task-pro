@@ -24,7 +24,9 @@ columnSchema.pre("findOneAndUpdate", setUpdateSettings);
 columnSchema.post("findOneAndUpdate", handleSaveError);
 
 export const columnJoiSchema = Joi.object({
-  title: Joi.string().required(),
+  title: Joi.string()
+    .required()
+    .messages({ "any.required": "missing required 'title' field" }),
 });
 
 const Column = model("column", columnSchema);
