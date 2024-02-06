@@ -9,7 +9,11 @@ import {
   deleteCard,
 } from "../../controllers/cards-controller/index.js";
 
-import { isEmptyBody, isValidId } from "../../middleware/index.js";
+import {
+  authenticate,
+  isEmptyBody,
+  isValidId,
+} from "../../middleware/index.js";
 import { validateBody } from "../../decorators/validateBody.js";
 import {
   cardAddSchema,
@@ -19,6 +23,8 @@ import {
 import ctrlWrapper from "../../decorators/ctrlWrapper.js";
 
 const cardsRouter = express.Router();
+
+cardsRouter.use(authenticate);
 
 cardsRouter.get("/:idColumn", ctrlWrapper(getAllCards));
 
