@@ -47,8 +47,8 @@ authRouter.put(
 
 authRouter.patch(
   "/avatars",
-  upload.single("avatar"),
   authenticate,
+  upload.single("avatar"),
   ctrlWrapper(updateAvatar)
 );
 

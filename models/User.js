@@ -65,7 +65,10 @@ const userRegisterSchema = Joi.object({
     .required(),
   password: Joi.string()
     // .pattern(passwordRegexp)
-    // .message("Invalid password")
+    // .message("Invalid password. Must contain at least one letter (upper or lower case).
+    // must have at least one digit.
+    // must have at least one special character [@$!%*?&]
+    // Has a length of 8 to 64 characters.")
     .required(),
 });
 
@@ -76,7 +79,10 @@ const userLogSchema = Joi.object({
     .required(),
   password: Joi.string()
     // .pattern(passwordRegexp)
-    //.message("Invalid password")
+    //("Invalid password. Must contain at least one letter (upper or lower case).
+    // must have at least one digit.
+    // must have at least one special character [@$!%*?&]
+    // Has a length of 8 to 64 characters.")
     .required(),
 });
 
@@ -91,7 +97,10 @@ const userUpdateSchema = Joi.object({
     .required(),
   password: Joi.string()
     // .pattern(passwordRegexp)
-    // .message("Invalid password")
+    // ("Invalid password. Must contain at least one letter (upper or lower case).
+    // must have at least one digit.
+    // must have at least one special character [@$!%*?&]
+    // Has a length of 8 to 64 characters.")
     .required(),
 });
 
