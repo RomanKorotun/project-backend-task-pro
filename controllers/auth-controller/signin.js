@@ -4,16 +4,10 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 import BoardModel from "../../models/Board.js";
-import Column from "../../models/Column.js";
+import {getColumnsBoard} from "../../helpers/index.js";
+
 const { JWT_SECRET } = process.env;
-const getAllColumns = async (listBoards) =>{
-  return listBoards.map((board)=>{
-       if(board.isActiv){
-       board.columns =[1,2,3,4,5]; 
-      }
-         return board;
-   })
-}
+
 const userSigIn = async (req, res) => {
   const { email, password } = req.body;
 
@@ -54,7 +48,7 @@ const userSigIn = async (req, res) => {
   await User.findByIdAndUpdate(user._id, { token });
  
   const listBoards = await BoardModel.find({ owner: user._id});
-   const listBoardsAndColumns = await getAllColumns(listBoards);
+   const listBoardsAndColumns = await getColumnsBoard(listBoards);
   // console.log('listBoardsAndColumns', listBoardsAndColumns)
    //const listBoardsAndColumns =[...listBoards]
    res.json({
