@@ -27,7 +27,7 @@ boardsRouter.put(
     isValidId,
     isEmptyBody,
     validateBody(dashboarUpdateSchema),
-    updateBoard
+    ctrlWrapper(updateBoard)
   );
   boardsRouter.delete("/:id", isValidId, ctrlWrapper(removeBoard));
 
