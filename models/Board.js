@@ -15,6 +15,10 @@ const dashboardSchema = new Schema({
     type: String,
     required: true,
   },
+  isActive: {
+    type: Boolean,
+    default:false,
+  },
   owner: {
     type: Schema.Types.ObjectId,
     ref: "user",
@@ -35,12 +39,16 @@ export const dashboardAddSchema = Joi.object({
   title: Joi.string().required(),
   icnboard: Joi.string().required(),
   background: Joi.string().required(),
+  isActive: Joi.boolean(),
 });
 export const dashboarUpdateSchema = Joi.object({
   title: Joi.string(),
   icnboard: Joi.string(),
   background: Joi.string(),
 });
+export const dashboardUpdateActivSchema = Joi.object({
+  isActive: Joi.boolean().required(),
+ });
 const BoardModel = model("board", dashboardSchema);
 
 export default BoardModel;

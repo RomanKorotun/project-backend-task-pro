@@ -8,7 +8,7 @@ const getByIdBoard = async (req, res) => {
       owner: req.user._id,
     }).populate("owner","userName email");;
     if (!board) {
-      throw HttpError(404, ` Contact with id = ${id} not found`);
+      throw HttpError(404, ` Board with id = ${id} not found`);
     }
     res.json(board);
   };
