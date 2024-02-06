@@ -1,4 +1,6 @@
+import { HttpError } from "../../helpers/index.js";
 import SendEmail from "../../helpers/SendEmail.js";
+import { User } from "../../models/User.js";
 
 const EMAIL_TO = "taskpro.project@gmail.com";
 
@@ -6,7 +8,7 @@ const sendHelpMail = async (req, res) => {
   const { email, comment } = req.body;
   const result = await User.findOne({ email });
   if (!result) {
-    throw createError(404, "User not found");
+    throw HttpError(404, "User not found");
   }
 
   const helpEmail = {
