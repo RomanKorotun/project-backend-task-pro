@@ -16,7 +16,7 @@ boardsRouter.get("/:id",isValidId, ctrlWrapper(getByIdBoard));
 
 boardsRouter.post("/",isEmptyBody,validateBody(dashboardAddSchema), ctrlWrapper(addBoard));
 boardsRouter.patch(
-  "/:id/active",
+  "/active/:id",
   isValidId,
   validateBody(dashboardUpdateActivSchema, "missing field active"),
   updateBoardActive

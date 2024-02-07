@@ -7,7 +7,9 @@ const getAarCards = async (column) => {
 };
 
 const getColumnsBoard = async (listB) => {
+  
   const activeBoard = listB.find((el) => el.isActive === true);
+  console.log('activeBoard', activeBoard)
   if (activeBoard) {
     const columns = await Column.find({ owner: activeBoard._id });
     const cards = await Promise.all(

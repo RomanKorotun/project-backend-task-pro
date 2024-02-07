@@ -1,4 +1,5 @@
 import HttpError from "../../helpers/HttpError.js";
+import {getColumnsBoard} from "../../helpers/index.js";
 import BoardModel from "../../models/Board.js";
 
 const getByIdBoard = async (req, res) => {
@@ -10,7 +11,11 @@ const getByIdBoard = async (req, res) => {
     if (!board) {
       throw HttpError(404, ` Board with id = ${id} not found`);
     }
-    res.json(board);
+  //Отримуємо і виводимо колонки для активної дошки після її виводу,
+  // інщі дошки виводим без змін
+  const listBoardsAndColumns = await getColumnsBoard([board]);
+
+    res.json(listBoardsAndColumns);
   };
 
   export default getByIdBoard;
