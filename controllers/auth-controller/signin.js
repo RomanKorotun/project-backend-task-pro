@@ -4,7 +4,7 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 import BoardModel from "../../models/Board.js";
-import {getColumnsBoard} from "../../helpers/index.js";
+import { getColumnsBoard } from "../../helpers/index.js";
 
 const { JWT_SECRET } = process.env;
 
@@ -46,22 +46,21 @@ const userSigIn = async (req, res) => {
   const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "23h" }); // генерація токена
 
   await User.findByIdAndUpdate(user._id, { token });
- 
-  const listBoards = await BoardModel.find({ owner: user._id});
-    //Отримуємо і виводимо колонки для активної дошки після її виводу,
+
+  const listBoards = await BoardModel.find({ owner: user._id });
+  //Отримуємо і виводимо колонки для активної дошки після її виводу,
   // інщі дошки виводим без змін
-   const listBoardsAndColumns = await getColumnsBoard(listBoards);
-  
-   res.json({
+  const listBoardsAndColumns = await getColumnsBoard(listBoards);
+
+  res.json({
     token: token,
     user: {
       userName: user.userName,
       email: user.email,
       avatarURl: user.avatarURL,
       theme: user.theme,
-      boards:listBoardsAndColumns,
+      boards: listBoardsAndColumns,
     },
-    
   });
 };
 
