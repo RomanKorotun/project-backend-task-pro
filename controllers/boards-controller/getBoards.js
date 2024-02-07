@@ -7,7 +7,8 @@ const getAllBoards = async (req, res) => {
     "owner",
     "email userName"
   );
-  //Отримуємо і виводимо колонки для активної дошки після її виводу, інщі дошки виводим без змін
+  //Отримуємо і виводимо колонки для активної дошки після її виводу,
+  // інщі дошки виводим без змін
   const listBoardsAndColumns = await getColumnsBoard(listBoards);
    res.json(listBoardsAndColumns);
 };

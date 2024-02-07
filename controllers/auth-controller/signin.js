@@ -48,9 +48,10 @@ const userSigIn = async (req, res) => {
   await User.findByIdAndUpdate(user._id, { token });
  
   const listBoards = await BoardModel.find({ owner: user._id});
+    //Отримуємо і виводимо колонки для активної дошки після її виводу,
+  // інщі дошки виводим без змін
    const listBoardsAndColumns = await getColumnsBoard(listBoards);
-  // console.log('listBoardsAndColumns', listBoardsAndColumns)
-   //const listBoardsAndColumns =[...listBoards]
+  
    res.json({
     token: token,
     user: {
