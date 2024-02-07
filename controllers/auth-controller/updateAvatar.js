@@ -19,7 +19,10 @@ const updateAvatar = async (req, res) => {
 
     const result = await User.findOneAndUpdate(
       { _id: userId },
-      { avatarURL: avatarUpload }
+      {
+        avatarURL: avatarUpload,
+        defAvatar: false,
+      }
     );
 
     //запис в об'єкт user посилання на новаий аватар

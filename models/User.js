@@ -28,7 +28,11 @@ const userSchema = new Schema(
     avatarURL: {
       type: String,
       //requred: true,
-      default: "avatarUrl",
+      //default: "avatarUrl",
+    },
+    defAvatar: {
+      type: Boolean,
+      default: true,
     },
     theme: {
       type: String,
