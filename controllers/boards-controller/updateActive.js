@@ -1,4 +1,5 @@
 import HttpError  from "../../helpers/HttpError.js";
+import {getColumnsBoard} from "../../helpers/index.js";
 import BoardModel from "../../models/Board.js";
 
 const updateActive = async (req, res) => {
@@ -20,7 +21,9 @@ const updateActive = async (req, res) => {
     if (!board) {
       throw HttpError(404, ` Board with id = ${id} not found`);
     }
-    res.status(201).json(board);
+
+    const listBoardsAndColumns = await getColumnsBoard([board]);
+    res.status(201).json(listBoardsAndColumns);
   };
 
   export default updateActive;
