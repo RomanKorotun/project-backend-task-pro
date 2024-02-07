@@ -30,7 +30,7 @@ const getColumnsBoard = async (listB) => {
   const cards = columns.map((column) => {
     const arCards = getAarCards(column);
     return {
-      col: column._doc,
+      column: column._doc,
       cards: arCards,
     };
   });
