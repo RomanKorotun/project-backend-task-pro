@@ -9,8 +9,7 @@ const storage = multer.diskStorage({
     if (Array.isArray(file) ){
       file.map((elem)=>{
      const newFileName =  elem.file.originalname;
-     console.log('newFileName', newFileName)
-      cb(null, newFileName);
+        cb(null, newFileName);
    })
     } else {
       const newFileName = file.originalname;
@@ -20,7 +19,6 @@ const storage = multer.diskStorage({
 });
 // const fileFilter = (req, file, cb) => {
 //   const extention = file.originalname.split(".").pop();
-//   //  console.log('file.originalname', file.originalname)
 //   if (extention !== "jpg" && extention !== "png") {
 //     cb(
 //       HttpError(
