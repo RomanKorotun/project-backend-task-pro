@@ -4,7 +4,7 @@ import fs from "fs/promises";
 
 const updateAvatar = async (req, res) => {
   try {
-    const { _id: userId } = req.user;
+    const { _id } = req.user;
 
     // завантаження аватарки на хмару у папку "avatars"
     const { url: avatarUpload } = await cloudinary.uploader.upload(
@@ -17,18 +17,14 @@ const updateAvatar = async (req, res) => {
     //видалення файла з аватаркою з папки temp
     await fs.unlink(req.file.path);
 
-    const result = await User.findOneAndUpdate(
-      { _id: userId },
-      {
-        avatarURL: avatarUpload,
-        defAvatar: false,
-      }
-    );
+    const result = await User.findByIdAndUpdate(_id, {
+      avatarURL: { avatarCustom: avatarUpload },
+    });
 
-    //запис в об'єкт user посилання на новаий аватар
-    req.user.avatarURL = avatarUpload;
-
-    res.json({ avatarURL: result.avatarURL });
+    res.json({
+      email: result.email,
+      avatarURL: result.avatarURL,
+    });
   } catch (error) {
     await fs.unlink(req.file.path);
   }
