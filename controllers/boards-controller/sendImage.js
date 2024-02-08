@@ -75,7 +75,7 @@ const sendCloudinary = async (file, ind,imageArray) => {
       typeDev = "mobile";
       break;
   }
-  //console.log('fileName', fileName)
+
   //папка для запису image на cloudinary
   const folder = `Task_Dashboard_Bg/${typeDev}_${fileName.ext.slice(1)}`;
   const cloudinaryResult = await cloudinary.uploader.upload(pathImgSourse, {
@@ -94,7 +94,6 @@ const sendCloudinary = async (file, ind,imageArray) => {
   };
   //массив для запису обэктів картинок
   imageArray.push(img);
-  //console.log('imageArray', imageArray)
   //видаляємо файл на temp
   deleteFile(pathImgSourse);
   return getPathFileJSON(typeDev, fileName.ext.slice(1));
