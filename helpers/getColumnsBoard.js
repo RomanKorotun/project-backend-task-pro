@@ -29,7 +29,7 @@ const getColumnsBoard = async (listB) => {
       }
     });
   } else {
-    return [];
+       return listB;
   }
 };
 export default getColumnsBoard;
