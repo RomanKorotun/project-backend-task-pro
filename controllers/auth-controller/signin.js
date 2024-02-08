@@ -13,22 +13,24 @@ const userSigIn = async (req, res) => {
 
   const user = await User.findOne({ email }); //перевірка наявності юзера з таким email-ом
 
-  const avatarLight =
-    "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/lt_user.jpg";
-  const avatarDark =
-    "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/dk_user.jpg";
-  const avatarViolet =
-    "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/vl_user.jpg";
+  let avatarDark = null;
+  let avatarViolet = null;
+  let avatarLight = null;
 
-  switch (user.theme) {
-    case "dark":
-      user.avatarURL = avatarDark;
-      break;
-    case "violet":
-      user.avatarURL = avatarViolet;
-      break;
-    default:
-      user.avatarURL = avatarLight;
+  if (!user.avatarURL.avatarCustom) {
+    switch (user.theme) {
+      case "dark":
+        avatarDark =
+          "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/dk_user.jpg";
+        break;
+      case "violet":
+        avatarViolet =
+          "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/vl_user.jpg";
+        break;
+      default:
+        avatarLight =
+          "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/lt_user.jpg";
+    }
   }
 
   if (!user) {
@@ -45,7 +47,32 @@ const userSigIn = async (req, res) => {
 
   const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "23h" }); // генерація токена
 
-  await User.findByIdAndUpdate(user._id, { token });
+  if (user.avatarURL.avatarCustom) {
+    await User.findByIdAndUpdate(user._id, { token });
+  }
+
+  if (avatarDark) {
+    await User.findByIdAndUpdate(user._id, {
+      token,
+      avatarURL: { avatarDark },
+    });
+  }
+
+  if (avatarViolet) {
+    await User.findByIdAndUpdate(user._id, {
+      token,
+      avatarURL: { avatarViolet },
+    });
+  }
+
+  if (avatarLight) {
+    await User.findByIdAndUpdate(user._id, {
+      token,
+      avatarURL: { avatarLight },
+    });
+  }
+
+  const { avatarURL } = await User.findOne({ email });
 
   const listBoards = await BoardModel.find({ owner: user._id });
   //Отримуємо і виводимо колонки для активної дошки після її виводу,
@@ -57,7 +84,7 @@ const userSigIn = async (req, res) => {
     user: {
       userName: user.userName,
       email: user.email,
-      avatarURl: user.avatarURL,
+      avatarURL: avatarURL,
       theme: user.theme,
       boards: listBoardsAndColumns,
     },
