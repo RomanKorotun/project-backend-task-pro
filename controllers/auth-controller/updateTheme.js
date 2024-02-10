@@ -30,21 +30,21 @@ const updateTheme = async (req, res) => {
   }
 
   if (avatarDark) {
-    const user = await User.findByIdAndUpdate(_id, {
+    await User.findByIdAndUpdate(_id, {
       theme,
       avatarURL: { avatarDark },
     });
   }
 
   if (avatarViolet) {
-    const user = await User.findByIdAndUpdate(_id, {
+    await User.findByIdAndUpdate(_id, {
       theme,
       avatarURL: { avatarViolet },
     });
   }
 
   if (avatarLight) {
-    const user = await User.findByIdAndUpdate(_id, {
+    await User.findByIdAndUpdate(_id, {
       theme,
       avatarURL: { avatarLight },
     });
