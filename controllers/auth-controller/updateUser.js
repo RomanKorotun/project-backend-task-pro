@@ -1,38 +1,50 @@
 import { User } from "../../models/User.js";
 import bcryptjs from "bcryptjs";
+import cloudinary from "../../helpers/cloudinary.js";
+import fs from "fs/promises";
 
 const updateUser = async (req, res) => {
   try {
-    const { _id: userId } = req.user;
+    const { _id } = req.user;
 
-    const updateData = req.body;
-
-    // Отримати пароль з req.body
     const { password } = req.body;
 
     const hashPassword = await bcryptjs.hash(password, 10);
-    //дані для оновлення з запиту разом з хешованим паролем
-    const newUserData = { ...updateData, password: hashPassword };
 
-    const result = await User.findOneAndUpdate(
-      { _id: userId }, // Умова пошуку
-      newUserData
-    );
-
-    if (!result) {
-      throw HttpError(404, `User with ${userId} not found. Please repeat.`);
+    if (req.file !== undefined) {
+      const { url: avatarUpload } = await cloudinary.uploader.upload(
+        req.file.path,
+        {
+          folder: "avatars",
+        }
+      );
+      await fs.unlink(req.file.path);
+      const result = await User.findByIdAndUpdate(_id, {
+        ...req.body,
+        password: hashPassword,
+        avatarURL: { avatarCustom: avatarUpload },
+      });
+      res.json({
+        avatarURL: result.avatarURL,
+        userName: result.userName,
+        email: result.email,
+        password: result.password,
+      });
+      return;
     }
 
-    const { userName, email } = result;
+    const result = await User.findByIdAndUpdate(_id, {
+      ...req.body,
+      password: hashPassword,
+    });
 
-    const updateResult = {
-      userName,
-      email,
-    };
-
-    res.json(updateResult);
-  } catch (error) {
-    next(error);
+    res.json({
+      userName: result.userName,
+      email: result.email,
+      password: result.password,
+    });
+  } catch {
+    await fs.unlink(req.file.path);
   }
 };
 
