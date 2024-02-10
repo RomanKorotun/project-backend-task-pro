@@ -12,31 +12,28 @@ const dashboardSchema = new Schema(
       type: String,
       required: true,
     },
-
+    background: {
+      type: Number,
+      default: 1,
+    },
     
     background_decktop_jpeg_1x: {
       type: String,
-      required: true,
     },
     background_decktop_jpeg_2x: {
       type: String,
-      required: true,
-    },
+      },
     background_mobile_jpeg_1x: {
       type: String,
-      required: true,
-    },
+      },
     background_mobile_jpeg_2x: {
       type: String,
-      required: true,
     },
     background_tablet_jpeg_1x: {
       type: String,
-      required: true,
     },
     background_tablet_jpeg_2x: {
       type: String,
-      required: true,
     },
 
     isActive: {
@@ -63,16 +60,30 @@ dashboardSchema.post("findOneAndUpdate", handleSaveError);
 export const dashboardAddSchema = Joi.object({
   title: Joi.string().required(),
   icnboard: Joi.string().required(),
-  background: Joi.string().required(),
+  background: Joi.number(),
+  background_decktop_jpeg_1x: Joi.string(),
+  background_decktop_jpeg_2x: Joi.string(),
+  background_mobile_jpeg_1x: Joi.string(),
+  background_mobile_jpeg_2x: Joi.string(),
+  background_tablet_jpeg_1x: Joi.string(),
+  background_tablet_jpeg_2x: Joi.string(),
   isActive: Joi.boolean(),
 });
 export const dashboarUpdateSchema = Joi.object({
   title: Joi.string(),
   icnboard: Joi.string(),
-  background: Joi.string(),
+  background_decktop_jpeg_1x: Joi.string(),
+  background_decktop_jpeg_2x: Joi.string(),
+  background_mobile_jpeg_1x: Joi.string(),
+  background_mobile_jpeg_2x: Joi.string(),
+  background_tablet_jpeg_1x: Joi.string(),
+  background_tablet_jpeg_2x: Joi.string(),
 });
 export const dashboardUpdateActivSchema = Joi.object({
   isActive: Joi.boolean().required(),
+});
+export const dashboardUpdateBackgroundSchema = Joi.object({
+  background: Joi.number().required(),
 });
 const BoardModel = model("board", dashboardSchema);
 
