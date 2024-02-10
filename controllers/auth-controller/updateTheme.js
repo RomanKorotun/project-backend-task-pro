@@ -30,31 +30,39 @@ const updateTheme = async (req, res) => {
   }
 
   if (avatarDark) {
-    const user = await User.findByIdAndUpdate(_id, {
+    await User.findByIdAndUpdate(_id, {
       theme,
       avatarURL: { avatarDark },
     });
   }
 
   if (avatarViolet) {
-    const user = await User.findByIdAndUpdate(_id, {
+    await User.findByIdAndUpdate(_id, {
       theme,
       avatarURL: { avatarViolet },
     });
   }
 
   if (avatarLight) {
-    const user = await User.findByIdAndUpdate(_id, {
+    await User.findByIdAndUpdate(_id, {
       theme,
       avatarURL: { avatarLight },
     });
   }
 
-  const { avatarURL, theme: newTheme, email } = await User.findById(_id);
+  const { avatarURL, email } = await User.findById(_id);
+
+  if (req.user.avatarURL.avatarCustom) {
+    res.json({
+      email,
+      theme,
+    });
+    return;
+  }
 
   res.json({
     email,
-    theme: newTheme,
+    theme,
     avatarURL,
   });
 };
