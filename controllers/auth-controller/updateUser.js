@@ -43,8 +43,9 @@ const updateUser = async (req, res) => {
       email: result.email,
       password: result.password,
     });
-  } catch {
+  } catch (error) {
     await fs.unlink(req.file.path);
+    throw error;
   }
 };
 
