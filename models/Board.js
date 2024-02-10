@@ -13,7 +13,7 @@ const dashboardSchema = new Schema(
       required: true,
     },
     background: {
-      type: Number,
+      type: String,
       default: 1,
     },
     
@@ -60,7 +60,7 @@ dashboardSchema.post("findOneAndUpdate", handleSaveError);
 export const dashboardAddSchema = Joi.object({
   title: Joi.string().required(),
   icnboard: Joi.string().required(),
-  background: Joi.number(),
+  background: Joi.string(),
   background_decktop_jpeg_1x: Joi.string(),
   background_decktop_jpeg_2x: Joi.string(),
   background_mobile_jpeg_1x: Joi.string(),
@@ -72,6 +72,7 @@ export const dashboardAddSchema = Joi.object({
 export const dashboarUpdateSchema = Joi.object({
   title: Joi.string(),
   icnboard: Joi.string(),
+  background: Joi.string(),
   background_decktop_jpeg_1x: Joi.string(),
   background_decktop_jpeg_2x: Joi.string(),
   background_mobile_jpeg_1x: Joi.string(),
@@ -83,7 +84,7 @@ export const dashboardUpdateActivSchema = Joi.object({
   isActive: Joi.boolean().required(),
 });
 export const dashboardUpdateBackgroundSchema = Joi.object({
-  background: Joi.number().required(),
+  background: Joi.string().required(),
 });
 const BoardModel = model("board", dashboardSchema);
 
