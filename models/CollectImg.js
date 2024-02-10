@@ -3,6 +3,7 @@ import mongoose, { Schema, model } from "mongoose";
 //import { handleSaveError, setUpdateSettings } from "./hooks.js";
 const X_List =["1x" ,"2x"]
 const extList =["webp","jpg"];
+const deviceList =["desktop","tablet","mobile"];
 const ImgSchema = new Schema(
     {
         serialNumber: {
@@ -11,6 +12,7 @@ const ImgSchema = new Schema(
         }, 
         device: {
             type: String,
+            enum:deviceList,
             required: true 
         },
         X:{//поле для обозначення щильності зображення

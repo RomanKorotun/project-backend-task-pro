@@ -1,11 +1,21 @@
 import ImageModel from "../../models/CollectImg.js";
 
 const getImagesParam = async (req,res)=>{
-   const  {device,X} = req.params;
+   const  {serialNumber,device,X} = req.params;
    
-  const images = await ImageModel.find({
-    device,X
-   })
+
+   const objFind =  {
+      serialNumber
+   }
+
+   if (device) {
+      objFind.device = device;  
+   }
+   if (X) {
+      objFind.X = X;  
+   }
+   console.log('objFind', objFind)
+  const images = await ImageModel.find(objFind);
    res.json(images);
 }
 
