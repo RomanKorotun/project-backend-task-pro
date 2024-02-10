@@ -11,7 +11,7 @@ import logOut from "../../controllers/auth-controller/logout.js";
 import authenticate from "../../middleware/authenticate.js";
 import currentUser from "../../controllers/auth-controller/current.js";
 import updateUser from "../../controllers/auth-controller/updateUser.js";
-import updateAvatar from "../../controllers/auth-controller/updateAvatar.js";
+// import updateAvatar from "../../controllers/auth-controller/updateAvatar.js";
 import upload from "../../middleware/upload.js";
 import updateTheme from "../../controllers/auth-controller/updateTheme.js";
 import ctrlWrapper from "../../decorators/ctrlWrapper.js";
@@ -38,19 +38,20 @@ authRouter.post("/logout", authenticate, ctrlWrapper(logOut));
 authRouter.get("/current", authenticate, ctrlWrapper(currentUser));
 
 authRouter.put(
-  "/",
+  "/users",
   authenticate,
+  upload.single("avatar"),
   isEmptyBody,
   validateBody(userUpdateSchema),
   ctrlWrapper(updateUser)
 );
 
-authRouter.patch(
-  "/avatars",
-  authenticate,
-  upload.single("avatar"),
-  ctrlWrapper(updateAvatar)
-);
+// authRouter.patch(
+//   "/avatars",
+//   authenticate,
+//   upload.single("avatar"),
+//   ctrlWrapper(updateAvatar)
+// );
 
 authRouter.patch("/theme", authenticate, isEmptyBody, ctrlWrapper(updateTheme));
 
