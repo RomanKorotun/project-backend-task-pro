@@ -50,11 +50,19 @@ const updateTheme = async (req, res) => {
     });
   }
 
-  const { avatarURL, theme: newTheme, email } = await User.findById(_id);
+  const { avatarURL, email } = await User.findById(_id);
+
+  if (req.user.avatarURL.avatarCustom) {
+    res.json({
+      email,
+      theme,
+    });
+    return;
+  }
 
   res.json({
     email,
-    theme: newTheme,
+    theme,
     avatarURL,
   });
 };
