@@ -2,30 +2,55 @@ import { Schema, model } from "mongoose";
 import Joi from "joi";
 import { handleSaveError, setUpdateSettings } from "./hooks.js";
 
-const dashboardSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
+const dashboardSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    icnboard: {
+      type: String,
+      required: true,
+    },
+
+    
+    background_decktop_jpeg_1x: {
+      type: String,
+      required: true,
+    },
+    background_decktop_jpeg_2x: {
+      type: String,
+      required: true,
+    },
+    background_mobile_jpeg_1x: {
+      type: String,
+      required: true,
+    },
+    background_mobile_jpeg_2x: {
+      type: String,
+      required: true,
+    },
+    background_tablet_jpeg_1x: {
+      type: String,
+      required: true,
+    },
+    background_tablet_jpeg_2x: {
+      type: String,
+      required: true,
+    },
+
+    isActive: {
+      type: Boolean,
+      default: false,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
   },
-  icnboard: {
-    type: String,
-    required: true,
-  },
-  background: {
-    type: String,
-    required: true,
-  },
-  isActive: {
-    type: Boolean,
-    default:false,
-  },
-  owner: {
-    type: Schema.Types.ObjectId,
-    ref: "user",
-    required: true,
-  },
-},
-{ versionKey: false, timestamps: true });
+  { versionKey: false, timestamps: true }
+);
 
 // хук зміни статусу помилки при запису
 dashboardSchema.post("save", handleSaveError);
@@ -48,7 +73,7 @@ export const dashboarUpdateSchema = Joi.object({
 });
 export const dashboardUpdateActivSchema = Joi.object({
   isActive: Joi.boolean().required(),
- });
+});
 const BoardModel = model("board", dashboardSchema);
 
 export default BoardModel;
