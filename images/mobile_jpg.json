@@ -7,7 +7,31 @@
     "typefile": "jpg",
     "folder": "Task_Dashboard_Bg/mobile_jpg_2x",
     "serialNumb": 1,
-    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707563354/Task_Dashboard_Bg/mobile_jpg_2x/m_1_2x_sacura.jpg",
+    "url": "http://res.cloudinary.com/dmb8erz1v/image/upload/v1707665824/Task_Dashboard_Bg/mobile_jpg_2x/m_1_2x_sacura.jpg",
     "src": "m_1_2x_sacura"
+
+  },
+  {
+    "id": "m_2",
+    "x": "2x",
+    "typedevice": "m",
+    "typeDev": "mobile",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/mobile_jpg_2x",
+    "serialNumb": 2,
+    "url": "http://res.cloudinary.com/dmb8erz1v/image/upload/v1707665824/Task_Dashboard_Bg/mobile_jpg_2x/m_2_2x_mountainpeak.jpg",
+    "src": "m_2_2x_mountainpeak"
+  },
+  {
+    "id": "m_3",
+    "x": "2x",
+    "typedevice": "m",
+    "typeDev": "mobile",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/mobile_jpg_2x",
+    "serialNumb": 3,
+    "url": "http://res.cloudinary.com/dmb8erz1v/image/upload/v1707665824/Task_Dashboard_Bg/mobile_jpg_2x/m_3_2x_palm.jpg",
+    "src": "m_3_2x_palm"
+
   }
 ]
