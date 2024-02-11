@@ -19,5 +19,6 @@ imagesRouter.get("/:serialNumber/:device", isValidParamImg, ctrlWrapper(getImage
 imagesRouter.get("/:serialNumber", isValidParamImg, ctrlWrapper(getImagesParam));
 imagesRouter.post("/", upload.array("images", 15), ctrlWrapper(addImages));
 imagesRouter.delete("/", ctrlWrapper(deleteImages));
+imagesRouter.delete("/:id", ctrlWrapper(deleteImages));
 
 export default imagesRouter;

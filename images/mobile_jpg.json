@@ -9,6 +9,7 @@
     "serialNumb": 1,
     "url": "http://res.cloudinary.com/dmb8erz1v/image/upload/v1707665824/Task_Dashboard_Bg/mobile_jpg_2x/m_1_2x_sacura.jpg",
     "src": "m_1_2x_sacura"
+
   },
   {
     "id": "m_2",
@@ -31,5 +32,6 @@
     "serialNumb": 3,
     "url": "http://res.cloudinary.com/dmb8erz1v/image/upload/v1707665824/Task_Dashboard_Bg/mobile_jpg_2x/m_3_2x_palm.jpg",
     "src": "m_3_2x_palm"
+
   }
 ]
