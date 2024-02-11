@@ -14,7 +14,8 @@ const isValidParamImg = (req, res, next) => {
   if (X) {
     xOk = xList.some((el) => (el = X));
   }
-  if (serialNumber >= 1 && serialNumber <= 15) {
+  
+  if ((serialNumber >= 0 && serialNumber <= 15)) {
     serNumberOk = true;
   }
 
@@ -22,7 +23,7 @@ const isValidParamImg = (req, res, next) => {
     return next(
       HttpError(
         400,
-        `No valid serial number:${device}  or device: ${device} or x:${X}`
+        `No valid serial number:${serialNumber}  or device: ${device} or x:${X}`
       )
     );
   }
