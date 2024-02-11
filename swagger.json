@@ -1,0 +1,2244 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "0.0.1",
+    "title": "Tasks-pro",
+    "description": "tasks's db"
+  },
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "servers": [{ "url": "http://localhost:3030/api" }],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authorization endpoints"
+    },
+    {
+      "name": "Boards",
+      "description": "Boards endpoints"
+    },
+    {
+      "name": "Columns",
+      "description": "Columns endpoints"
+    },
+    {
+      "name": "Cards",
+      "description": "Cards endpoints"
+    },
+    {
+      "name": "Backgrounds",
+      "description": "Backgrounds endpoints"
+    },
+    {
+      "name": "Help",
+      "description": "Helps endpoints"
+    }
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User registration",
+
+        "parameters": [],
+
+        "security": [],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful registration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User authentication",
+
+        "parameters": [],
+
+        "security": [],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SigninRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful authentication",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SigninResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/SigninResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/SigninResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User logout",
+
+        "parameters": [],
+
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Successful logout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/current": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Refresh user",
+
+        "parameters": [],
+
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Refresh user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/CurrentResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/CurrentResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/CurrentResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/users": {
+      "put": {
+        "tags": ["Auth"],
+        "summary": "User update",
+
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": false
+          }
+        ],
+
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful updateUser",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserUpdateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdateResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdateResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdateResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/theme": {
+      "patch": {
+        "tags": ["Auth"],
+        "summary": "App theme updates",
+
+        "parameters": [],
+
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ThemeUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful theme update",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeUpdateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/ThemeUpdateResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/ThemeUpdateResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/ThemeUpdateResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/boards": {
+      "get": {
+        "tags": ["Boards"],
+        "summary": "List of all boards",
+
+        "parameters": [],
+
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "List boards successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BoardsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BoardsResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BoardsResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BoardsResponse"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Boards"],
+        "summary": "Adding a new board",
+
+        "parameters": [],
+
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBoardRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Adding a new board successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddBoardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBoardResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBoardResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBoardResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/boards/{id}": {
+      "get": {
+        "tags": ["Boards"],
+        "summary": "Returning board by Id",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "board's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Returning a board successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BoardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BoardResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BoardResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BoardResponse"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Boards"],
+        "summary": "Update one board by Id",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "board's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBoardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Return board successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBoardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBoardResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBoardResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBoardResponse"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Boards"],
+        "summary": "Delete one board by Id",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "board's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Delete board successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteBoardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBoardResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBoardResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBoardResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/columns/{idBoard}": {
+      "get": {
+        "tags": ["Columns"],
+        "summary": "Returning all columns by idBoard",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idBoard",
+            "required": true,
+            "type": "string",
+            "description": "board's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Returning list columns successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColumnsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/ColumnsResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/ColumnsResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/ColumnsResponse"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Columns"],
+        "summary": "Adding column by idBoard",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idBoard",
+            "required": true,
+            "type": "string",
+            "description": "board's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddColumnRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Adding column successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddColumnResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/AddColumnResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/AddColumnResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/AddColumnResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/columns/{idBoard}/{id}": {
+      "get": {
+        "tags": ["Columns"],
+        "summary": "Returning all columns by idBoard",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idBoard",
+            "required": true,
+            "type": "string",
+            "description": "board's id"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "column's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Returning column successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColumnResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/ColumnResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/ColumnResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/ColumnResponse"
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Columns"],
+        "summary": "Updating column by idBoard",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idBoard",
+            "required": true,
+            "type": "string",
+            "description": "board's id"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "column's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateColumnRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Updating column successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateColumnResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateColumnResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateColumnResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateColumnResponse"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Columns"],
+        "summary": "Deleting column by idBoard",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idBoard",
+            "required": true,
+            "type": "string",
+            "description": "board's id"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "column's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Deleting column successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteColumnResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteColumnResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteColumnResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteColumnResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/{idColumn}": {
+      "get": {
+        "tags": ["Cards"],
+        "summary": "Returning all cards by idColumn",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idColumn",
+            "required": true,
+            "type": "string",
+            "description": "column's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Returning list cards successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/CardsResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/CardsResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/CardsResponse"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Cards"],
+        "summary": "Adding card by idColumn",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idColumn",
+            "required": true,
+            "type": "string",
+            "description": "card's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCardRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Adding card successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddCardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCardResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCardResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCardResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/{idColumn}/{id}": {
+      "get": {
+        "tags": ["Cards"],
+        "summary": "Returning card by idColumn",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idColumn",
+            "required": true,
+            "type": "string",
+            "description": "column's id"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "card's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Returning card successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/CardResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/CardResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/CardResponse"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Cards"],
+        "summary": "Updating card by idColumn",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idColumn",
+            "required": true,
+            "type": "string",
+            "description": "column's id"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "card's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCardRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Updating card successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateCardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCardResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCardResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCardResponse"
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Cards"],
+        "summary": "Сard transfer",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idColumn",
+            "required": true,
+            "type": "string",
+            "description": "column's id"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "card's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferCardRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Updating card successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransferCardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferCardResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferCardResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferCardResponse"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Cards"],
+        "summary": "Deleting card by idColumn",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idColumn",
+            "required": true,
+            "type": "string",
+            "description": "column's id"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "card's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Deleting card successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteCardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteCardResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteCardResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteCardResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/help/": {
+      "post": {
+        "tags": ["Help"],
+        "summary": "Send help email",
+
+        "parameters": [],
+
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HelpRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Send help email successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HelpResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/HelpResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/HelpResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/HelpResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/img": {
+      "get": {
+        "tags": ["Backgrounds"],
+        "summary": "List of all backgrounds",
+
+        "parameters": [],
+
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Returning list of backgrounds successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BackgroundsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BackgroundsResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BackgroundsResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BackgroundsResponse"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Backgrounds"],
+        "summary": "Uploading new backgrounds",
+
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": false
+          }
+        ],
+
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBgRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Adding new backgrounds successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddBgResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBgResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBgResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBgResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/img/{serialNumber}": {
+      "get": {
+        "tags": ["Backgrounds"],
+        "summary": "Returning all images by serialNumber",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "serialNumber",
+            "required": true,
+            "type": "string",
+            "description": "serialNumber"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Returning list images successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BgSerialNumberResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BgSerialNumberResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BgSerialNumberResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BgSerialNumberResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/img/{serialNumber}/{device}": {
+      "get": {
+        "tags": ["Backgrounds"],
+        "summary": "Returning all images by serialNumber/device",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "serialNumber",
+            "required": true,
+            "type": "string",
+            "description": "serialNumber"
+          },
+          {
+            "in": "path",
+            "name": "device",
+            "required": true,
+            "type": "string",
+            "description": "device"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Returning list images successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BgSerialNumberDeviceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BgSerialNumberDeviceResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BgSerialNumberDeviceResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BgSerialNumberDeviceResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/img/{serialNumber}/{device}/{x}": {
+      "get": {
+        "tags": ["Backgrounds"],
+        "summary": "Returning all images by serialNumber/device",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "serialNumber",
+            "required": true,
+            "type": "string",
+            "description": "serialNumber"
+          },
+          {
+            "in": "path",
+            "name": "device",
+            "required": true,
+            "type": "string",
+            "description": "device"
+          },
+          {
+            "in": "path",
+            "name": "X",
+            "required": true,
+            "type": "string",
+            "description": "device"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Returning list images successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BgSerialNumberDeviceXResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BgSerialNumberDeviceXResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BgSerialNumberDeviceXResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "schema": {
+                "$ref": "#/components/schemas/BgSerialNumberDeviceXResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegistrationRequest": {
+        "type": "object",
+        "required": ["userName", "email", "password"],
+        "properties": {
+          "userName": {
+            "type": "string",
+            "description": "User's userName",
+            "example": "Alex Jonson"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qWe#4567"
+          }
+        }
+      },
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "description": "User's userName"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          }
+        }
+      },
+      "SigninRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qWe#4567"
+          }
+        }
+      },
+      "SigninResponse": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "description": "User's Name"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          }
+        }
+      },
+      "LogoutRequest": {
+        "type": "object",
+        "required": false,
+        "properties": false
+      },
+      "LogoutResponse": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "description": "User's Name"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          }
+        }
+      },
+      "CurrentResponse": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "description": "User's Name"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          }
+        }
+      },
+      "UserUpdateRequest": {
+        "type": "object",
+        "required": ["userName", "email", "password"],
+        "properties": {
+          "userName": {
+            "type": "string",
+            "description": "User's userName",
+            "example": "Alex Jonson"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qWe#4567"
+          },
+          "avatar": {
+            "type": "string",
+            "format": "binary",
+            "description": "User's avatar image"
+          }
+        }
+      },
+      "UserUpdateResponse": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "description": "User's userName"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "User's avatar"
+          }
+        }
+      },
+      "ThemeUpdateRequest": {
+        "type": "object",
+        "required": ["theme"],
+        "properties": {
+          "theme": {
+            "type": "string",
+            "description": "User's theme"
+          }
+        }
+      },
+      "ThemeUpdateResponse": {
+        "type": "object",
+        "properties": {
+          "theme": {
+            "type": "string",
+            "description": "User's new theme"
+          }
+        }
+      },
+      "AddBoardRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title board"
+          },
+          "icnboard": {
+            "type": "string",
+            "description": "Icnboard board"
+          },
+          "background": {
+            "type": "string",
+            "description": "Background board"
+          }
+        }
+      },
+      "AddBoardResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title board"
+          },
+          "icnboard": {
+            "type": "string",
+            "description": "Icnboard board"
+          },
+          "background": {
+            "type": "string",
+            "description": "Background board"
+          }
+        }
+      },
+      "BoardResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's board"
+          }
+        }
+      },
+      "BoardsResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's board"
+          }
+        }
+      },
+      "UpdateBoardRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title board"
+          },
+          "icnboard": {
+            "type": "string",
+            "description": "Icnboard board"
+          },
+          "background": {
+            "type": "string",
+            "description": "Background board"
+          }
+        }
+      },
+      "UpdateBoardResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title board"
+          },
+          "icnboard": {
+            "type": "string",
+            "description": "Icnboard board"
+          },
+          "background": {
+            "type": "string",
+            "description": "Background board"
+          }
+        }
+      },
+      "DeleteBoardRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title board"
+          },
+          "icnboard": {
+            "type": "string",
+            "description": "Icnboard board"
+          },
+          "background": {
+            "type": "string",
+            "description": "Background board"
+          }
+        }
+      },
+      "DeleteBoardResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title board"
+          },
+          "icnboard": {
+            "type": "string",
+            "description": "Icnboard board"
+          },
+          "background": {
+            "type": "string",
+            "description": "Background board"
+          }
+        }
+      },
+      "ColumnsResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's column"
+          }
+        }
+      },
+      "ColumnResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's column"
+          }
+        }
+      },
+      "AddColumnRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's column"
+          }
+        }
+      },
+      "AddColumnResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title column"
+          }
+        }
+      },
+      "UpdateColumnRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title column"
+          }
+        }
+      },
+      "UpdateColumnResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's column"
+          }
+        }
+      },
+      "DeleteColumnRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title column"
+          }
+        }
+      },
+      "DeleteColumnResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's column"
+          }
+        }
+      },
+      "CardsResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's card"
+          }
+        }
+      },
+      "AddCardRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's card"
+          },
+          "description": {
+            "type": "string",
+            "description": "Card's description"
+          }
+        }
+      },
+      "AddCardResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's card"
+          },
+          "description": {
+            "type": "string",
+            "description": "Card's description"
+          }
+        }
+      },
+      "CardRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's card"
+          },
+          "description": {
+            "type": "string",
+            "description": "Card's description"
+          }
+        }
+      },
+      "CardResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's card"
+          },
+          "description": {
+            "type": "string",
+            "description": "Card's description"
+          }
+        }
+      },
+      "UpdateCardRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's card"
+          },
+          "description": {
+            "type": "string",
+            "description": "Card's description"
+          }
+        }
+      },
+      "UpdateCardResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's card"
+          },
+          "description": {
+            "type": "string",
+            "description": "Card's description"
+          }
+        }
+      },
+      "HelpRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Comment"
+          }
+        }
+      },
+      "HelpResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Help email sent"
+          }
+        }
+      },
+      "TransferCardRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "owner": {
+            "type": "string",
+            "description": "Card's owner"
+          }
+        }
+      },
+      "TransferCardResponse": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string",
+            "description": "Card's owner"
+          }
+        }
+      },
+      "DeleteCardRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title card"
+          }
+        }
+      },
+      "DeleteCardResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's card"
+          }
+        }
+      },
+      "BackgroundsResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's board"
+          }
+        }
+      },
+      "BgSerialNumberResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's bg"
+          }
+        }
+      },
+      "BgSerialNumberDeviceResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's bg"
+          }
+        }
+      },
+      "BgSerialNumberDeviceXResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title's bg"
+          }
+        }
+      },
+
+      "AddBgRequest": {
+        "type": "object",
+        "properties": {
+          "images": {
+            "type": "string",
+            "format": "binary",
+            "description": "Background's images"
+          }
+        }
+      },
+      "AddBgResponse": {
+        "type": "object",
+        "properties": {
+          "images": {
+            "type": "string",
+            "description": "Background's images"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
