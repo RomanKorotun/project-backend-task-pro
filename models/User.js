@@ -2,10 +2,10 @@ import { Schema, model } from "mongoose";
 import { handleSaveError, setUpdateSettings } from "./hooks.js";
 import Joi from "joi";
 
-//const userNameRegexp = /^[A-Za-z\d@$!%*?&]{2,32}$/;
+const userNameRegexp = /^[A-Za-z\d@$!%*?&]{2,32}$/;
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-// const passwordRegexp =
-//   /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,64}$/;
+const passwordRegexp =
+  /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,64}$/;
 
 const themeList = ["light", "dark", "violet"];
 
@@ -57,51 +57,42 @@ const User = model("user", userSchema);
 
 const userRegisterSchema = Joi.object({
   userName: Joi.string()
-    // .pattern(userNameRegexp)
-    // .message("Invalid userName")
+    .pattern(userNameRegexp)
+    .message("Invalid userName")
     .required(),
   email: Joi.string()
-    // .pattern(emailRegexp)
-    // .message("Invalid email. Example: user@mail.com")
+    .pattern(emailRegexp)
+    .message("Invalid email. Example: user@mail.com")
     .required(),
   password: Joi.string()
-    // .pattern(passwordRegexp)
-    // .message("Invalid password. Must contain at least one letter (upper or lower case).
-    // must have at least one digit.
-    // must have at least one special character [@$!%*?&]
-    // Has a length of 8 to 64 characters.")
+    .pattern(passwordRegexp)
+    .message("Invalid password.Example: aW12@$!%*?&")
     .required(),
 });
 
 const userLogSchema = Joi.object({
   email: Joi.string()
-    // .pattern(emailRegexp)
-    // .message("Invalid email. Example: user@mail.com")
+    .pattern(emailRegexp)
+    .message("Invalid email. Example: user@mail.com")
     .required(),
   password: Joi.string()
-    // .pattern(passwordRegexp)
-    //("Invalid password. Must contain at least one letter (upper or lower case).
-    // must have at least one digit.
-    // must have at least one special character [@$!%*?&]
-    // Has a length of 8 to 64 characters.")
+    .pattern(passwordRegexp)
+    .message("Invalid password.Example: aW12@$!%*?&")
     .required(),
 });
 
 const userUpdateSchema = Joi.object({
   userName: Joi.string()
-    // .pattern(userNameRegexp)
-    // .message("Invalid userName")
+    .pattern(userNameRegexp)
+    .message("Invalid userName")
     .required(),
   email: Joi.string()
-    // .pattern(emailRegexp)
-    // .message("Invalid email. Example: user@mail.com")
+    .pattern(emailRegexp)
+    .message("Invalid email. Example: user@mail.com")
     .required(),
   password: Joi.string()
-    // .pattern(passwordRegexp)
-    // ("Invalid password. Must contain at least one letter (upper or lower case).
-    // must have at least one digit.
-    // must have at least one special character [@$!%*?&]
-    // Has a length of 8 to 64 characters.")
+    .pattern(passwordRegexp)
+    .message("Invalid password.Example: aW12@$!%*?&")
     .required(),
 });
 
