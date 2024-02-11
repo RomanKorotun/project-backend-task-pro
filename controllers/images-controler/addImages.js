@@ -1,3 +1,4 @@
+import HttpError from "../../helpers/HttpError.js";
 import sendCloudinary from "../../helpers/sendImagesAndWrite.js";
 import writeImageToFile from "../../helpers/writeImageTofile.js";
 import ImageModel from "../../models/CollectImg.js";
@@ -7,7 +8,7 @@ const writeToBd = async (array) => {
     (firstImage, secondImage) =>
       firstImage.serialNumber - secondImage.serialNumber
   );
-  await Promise.all(
+    await Promise.all(
     array.map(async (elem) => {
       await ImageModel.create({
         serialNumber: elem.serialNumb,
@@ -18,7 +19,7 @@ const writeToBd = async (array) => {
       });
     })
   );
-};
+ };
 
 const addImages = async (req, res) => {
   const imageArray = [];
@@ -32,9 +33,14 @@ const addImages = async (req, res) => {
   imageArray.sort(
     (firstImage, secondImage) => firstImage.serialNumb - secondImage.serialNumb
   );
+
   await writeImageToFile(pathListImg, imageArray);
 
+  try {
   await writeToBd(imageArray);
+} catch (error) {
+  throw HttpError(500, error.message)
+}
 
   res.json({ message: "files upload" });
 };

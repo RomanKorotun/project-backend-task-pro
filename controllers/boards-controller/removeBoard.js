@@ -1,4 +1,4 @@
-import HttpError from "../../helpers/HttpError.js";
+import {HttpError} from "../../helpers/index.js";
 import BoardModel from "../../models/Board.js";
 import Card from "../../models/Card.js";
 import Column from "../../models/Column.js";
