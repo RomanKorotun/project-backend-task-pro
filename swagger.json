@@ -7,7 +7,10 @@
   },
   "consumes": ["application/json"],
   "produces": ["application/json"],
-  "servers": [{ "url": "http://localhost:3030/api" }],
+  "servers": [
+    { "url": "https://project-backend-task-pro.onrender.com/api" },
+    { "url": "http://localhost:3030/api" }
+  ],
   "tags": [
     {
       "name": "Auth",
@@ -1313,7 +1316,7 @@
         }
       }
     },
-    "/help/": {
+    "/help": {
       "post": {
         "tags": ["Help"],
         "summary": "Send help email",
