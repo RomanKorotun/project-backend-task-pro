@@ -43,6 +43,7 @@ const signUp = async (req, res) => {
       userName: newUser.userName,
       email: newUser.email,
       avatarURL: newUser.avatarURL,
+      theme: newUser.theme,
     },
   });
 };

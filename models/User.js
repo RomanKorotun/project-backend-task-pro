@@ -13,6 +13,7 @@ const userSchema = new Schema(
   {
     userName: {
       type: String,
+      match: userNameRegexp,
       required: true,
     },
     password: {
@@ -21,6 +22,7 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
+      match: emailRegexp,
       required: [true, "Email is required"],
       unique: true,
     },
@@ -38,7 +40,6 @@ const userSchema = new Schema(
     },
     token: {
       type: String,
-      //required: [true, "Verify token is required"],
     },
   },
   { versionKey: false, timestamps: true }
@@ -58,41 +59,50 @@ const User = model("user", userSchema);
 const userRegisterSchema = Joi.object({
   userName: Joi.string()
     .pattern(userNameRegexp)
-    .message("Invalid userName")
+    .message(
+      "Invalid user Name. Name must contain Latin letters only and include from 2 to 32 characters. Name can also contain numbers and symbols (@,$,!,%,*,?,&)"
+    )
     .required(),
   email: Joi.string()
     .pattern(emailRegexp)
-    .message("Invalid email. Example: user@mail.com")
+    .message(
+      "Invalid email. Email contains Latin letters, numbers, only one symbol '@' and a 'period' (in the part with the hostname)"
+    )
     .required(),
   password: Joi.string()
     .pattern(passwordRegexp)
-    .message("Invalid password.Example: aW12@$!%*?&")
+    .message(
+      "Invalid password. Password must contain Latin letters, numbers, symbols (@,$,!,%,*,?,&) only and include from 8 to 64 characters"
+    )
     .required(),
 });
 
 const userLogSchema = Joi.object({
-  email: Joi.string()
-    .pattern(emailRegexp)
-    .message("Invalid email. Example: user@mail.com")
-    .required(),
+  email: Joi.string().pattern(emailRegexp).message("Invalid email").required(),
   password: Joi.string()
     .pattern(passwordRegexp)
-    .message("Invalid password.Example: aW12@$!%*?&")
+    .message("Invalid password")
     .required(),
 });
 
 const userUpdateSchema = Joi.object({
   userName: Joi.string()
     .pattern(userNameRegexp)
-    .message("Invalid userName")
+    .message(
+      "Invalid user Name. Name must contain Latin letters only and include from 2 to 32 characters. Name can also contain numbers and symbols (@,$,!,%,*,?,&)"
+    )
     .required(),
   email: Joi.string()
     .pattern(emailRegexp)
-    .message("Invalid email. Example: user@mail.com")
+    .message(
+      "Invalid email. Email contains Latin letters, numbers, only one symbol '@' and a 'period' (in the part with the hostname)"
+    )
     .required(),
   password: Joi.string()
     .pattern(passwordRegexp)
-    .message("Invalid password.Example: aW12@$!%*?&")
+    .message(
+      "Invalid password. Password must contain Latin letters, numbers, symbols (@,$,!,%,*,?,&) only and include from 8 to 64 characters"
+    )
     .required(),
 });
 
