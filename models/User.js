@@ -90,20 +90,17 @@ const userUpdateSchema = Joi.object({
     .pattern(userNameRegexp)
     .message(
       "Invalid user Name. Name must contain Latin letters only and include from 2 to 32 characters. Name can also contain numbers and symbols (@,$,!,%,*,?,&)"
-    )
-    .required(),
+    ),
   email: Joi.string()
     .pattern(emailRegexp)
     .message(
       "Invalid email. Email contains Latin letters, numbers, only one symbol '@' and a 'period' (in the part with the hostname)"
-    )
-    .required(),
+    ),
   password: Joi.string()
     .pattern(passwordRegexp)
     .message(
       "Invalid password. Password must contain Latin letters, numbers, symbols (@,$,!,%,*,?,&) only and include from 8 to 64 characters. Can't contain spaces"
-    )
-    .required(),
+    ),
 });
 
 export { User, userRegisterSchema, userLogSchema, userUpdateSchema };
