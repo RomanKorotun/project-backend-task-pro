@@ -1,12 +1,12 @@
 //import { v2 as cloudinary } from "cloudinary";
 import fs from "fs/promises";
-import dotenv from "dotenv";
+//import dotenv from "dotenv";
 import path from "path";
 import cloudinary from "./cloudinary.js";
 
-dotenv.config();
+//dotenv.config();
 
-const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
+
 
 //видаляэмо файл з тимчасової папки
 const deleteFile = async (pathFile) => {
@@ -85,6 +85,8 @@ const sendCloudinary = async (file, ind, imageArray) => {
 
   //папка для запису image на cloudinary
   const folder = `Task_Dashboard_Bg/${typeDev}_${fileName.ext.slice(1)}_${x}`;
+  
+  
   const cloudinaryResult = await cloudinary.uploader.upload(pathImgSourse, {
     public_id: fileName.name,
     folder: folder,
