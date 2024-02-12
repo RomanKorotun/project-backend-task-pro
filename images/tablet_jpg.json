@@ -1,13 +1,167 @@
 [
   {
-    "id": "t_3",
-    "x": "2x",
+    "id": "t_1",
+    "x": "1x",
     "typedevice": "t",
     "typeDev": "tablet",
     "typefile": "jpg",
-    "folder": "Task_Dashboard_Bg/tablet_jpg_2x",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
     "serialNumb": 1,
-    "url": "http://res.cloudinary.com/dmb8erz1v/image/upload/v1707669071/Task_Dashboard_Bg/tablet_jpg_2x/t_3_2x_palm.jpg",
-    "src": "t_3_2x_palm"
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772180/Task_Dashboard_Bg/tablet_jpg_1x/t_1_sacura.jpg",
+    "src": "t_1_sacura"
+  },
+  {
+    "id": "t_2",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 2,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772180/Task_Dashboard_Bg/tablet_jpg_1x/t_2_mountainpeak.jpg",
+    "src": "t_2_mountainpeak"
+  },
+  {
+    "id": "t_3",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 3,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772180/Task_Dashboard_Bg/tablet_jpg_1x/t_3_palm.jpg",
+    "src": "t_3_palm"
+  },
+  {
+    "id": "t_4",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 4,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772180/Task_Dashboard_Bg/tablet_jpg_1x/t_4_sky.jpg",
+    "src": "t_4_sky"
+  },
+  {
+    "id": "t_5",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 5,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772179/Task_Dashboard_Bg/tablet_jpg_1x/t_5_planets.jpg",
+    "src": "t_5_planets"
+  },
+  {
+    "id": "t_6",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 6,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772179/Task_Dashboard_Bg/tablet_jpg_1x/t_6_yacht.jpg",
+    "src": "t_6_yacht"
+  },
+  {
+    "id": "t_7",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 7,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772180/Task_Dashboard_Bg/tablet_jpg_1x/t_7_flowers.jpg",
+    "src": "t_7_flowers"
+  },
+  {
+    "id": "t_8",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 8,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772180/Task_Dashboard_Bg/tablet_jpg_1x/t_8_%D1%81rescent.jpg",
+    "src": "t_8_Arescent"
+  },
+  {
+    "id": "t_9",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 9,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772180/Task_Dashboard_Bg/tablet_jpg_1x/t_9_seacliffs.jpg",
+    "src": "t_9_seacliffs"
+  },
+  {
+    "id": "t_10",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 10,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772180/Task_Dashboard_Bg/tablet_jpg_1x/t_10_mars.jpg",
+    "src": "t_10_mars"
+  },
+  {
+    "id": "t_11",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 11,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772180/Task_Dashboard_Bg/tablet_jpg_1x/t_11_ballon.jpg",
+    "src": "t_11_ballon"
+  },
+  {
+    "id": "t_12",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 12,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772180/Task_Dashboard_Bg/tablet_jpg_1x/t_12_cave.jpg",
+    "src": "t_12_cave"
+  },
+  {
+    "id": "t_13",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 13,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772180/Task_Dashboard_Bg/tablet_jpg_1x/t_13_harbor.jpg",
+    "src": "t_13_harbor"
+  },
+  {
+    "id": "t_14",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 14,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772181/Task_Dashboard_Bg/tablet_jpg_1x/t_14_balloons.jpg",
+    "src": "t_14_balloons"
+  },
+  {
+    "id": "t_15",
+    "x": "1x",
+    "typedevice": "t",
+    "typeDev": "tablet",
+    "typefile": "jpg",
+    "folder": "Task_Dashboard_Bg/tablet_jpg_1x",
+    "serialNumb": 15,
+    "url": "http://res.cloudinary.com/drj0am35a/image/upload/v1707772180/Task_Dashboard_Bg/tablet_jpg_1x/t_15_milkyway.jpg",
+    "src": "t_15_milkyway"
   }
 ]

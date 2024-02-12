@@ -1,0 +1,14 @@
+[
+  {
+    "nameAvatar": "dt_user",
+    "avatarUrl": "http://res.cloudinary.com/drj0am35a/image/upload/v1707767735/TaskPro_Avatars/dt_user.jpg"
+  },
+  {
+    "nameAvatar": "vt_user",
+    "avatarUrl": "http://res.cloudinary.com/drj0am35a/image/upload/v1707767735/TaskPro_Avatars/vt_user.jpg"
+  },
+  {
+    "nameAvatar": "lt_user",
+    "avatarUrl": "http://res.cloudinary.com/drj0am35a/image/upload/v1707767736/TaskPro_Avatars/lt_user.jpg"
+  }
+]

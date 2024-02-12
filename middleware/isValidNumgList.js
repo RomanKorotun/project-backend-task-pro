@@ -2,7 +2,7 @@ import { HttpError } from "../helpers/index.js";
 
 const isValidNumbList = (req, res, next) => {
   const { background: serialNumber } = req.body;
-  //console.log('serialNumber', serialNumber)
+
   let serNumberOk = true;
   if ( serialNumber > 15) {
     serNumberOk = false;
