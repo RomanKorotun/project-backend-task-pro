@@ -72,7 +72,7 @@ const userRegisterSchema = Joi.object({
   password: Joi.string()
     .pattern(passwordRegexp)
     .message(
-      "Invalid password. Password must contain Latin letters, numbers, symbols (@,$,!,%,*,?,&) only and include from 8 to 64 characters"
+      "Invalid password. Password must contain Latin letters, numbers, symbols (@,$,!,%,*,?,&) only and include from 8 to 64 characters. Can't contain spaces"
     )
     .required(),
 });
@@ -101,7 +101,7 @@ const userUpdateSchema = Joi.object({
   password: Joi.string()
     .pattern(passwordRegexp)
     .message(
-      "Invalid password. Password must contain Latin letters, numbers, symbols (@,$,!,%,*,?,&) only and include from 8 to 64 characters"
+      "Invalid password. Password must contain Latin letters, numbers, symbols (@,$,!,%,*,?,&) only and include from 8 to 64 characters. Can't contain spaces"
     )
     .required(),
 });
