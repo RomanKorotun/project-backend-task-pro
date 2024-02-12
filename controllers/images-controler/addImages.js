@@ -24,6 +24,12 @@ const writeToBd = async (array) => {
 const addImages = async (req, res) => {
   const imageArray = [];
   const {widthImage}= req.body;
+  let message;
+  if (widthImage){
+    message = "File upload sucsess";
+  }else{
+    message =  `Warning!! Files are uploaded with the default width. If necessary, specify a field with the 'widthImage' key and the width value in the request body`;
+  } 
   let pathListImg = "";
   await Promise.all(
     req.files.map(async (file, index) => {
@@ -43,6 +49,6 @@ const addImages = async (req, res) => {
   throw HttpError(500, error.message)
 }
 
-  res.json({ message: "files upload" });
+  res.json({ message });
 };
 export default addImages;
