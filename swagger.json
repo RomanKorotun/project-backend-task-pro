@@ -77,8 +77,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "409": {
+            "description": "Conflict",
             "content": {
               "schema": {
                 "$ref": "#/components/schemas/RegistrationResponse"
@@ -109,7 +109,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful authentication",
             "content": {
               "application/json": {
@@ -119,16 +119,8 @@
               }
             }
           },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/SigninResponse"
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
+          "401": {
+            "description": "Your Email or password is wrong",
             "content": {
               "schema": {
                 "$ref": "#/components/schemas/SigninResponse"
@@ -148,7 +140,7 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful logout",
             "content": {
               "application/json": {
@@ -158,24 +150,8 @@
               }
             }
           },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/LogoutResponse"
-              }
-            }
-          },
           "401": {
             "description": "Unauthorized",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/LogoutResponse"
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
             "content": {
               "schema": {
                 "$ref": "#/components/schemas/LogoutResponse"
@@ -195,7 +171,7 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Refresh user",
             "content": {
               "application/json": {
@@ -205,24 +181,8 @@
               }
             }
           },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/CurrentResponse"
-              }
-            }
-          },
           "401": {
             "description": "Unauthorized",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/CurrentResponse"
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
             "content": {
               "schema": {
                 "$ref": "#/components/schemas/CurrentResponse"
@@ -284,14 +244,6 @@
                 "$ref": "#/components/schemas/UserUpdateResponse"
               }
             }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/UserUpdateResponse"
-              }
-            }
           }
         }
       }
@@ -317,7 +269,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful theme update",
             "content": {
               "application/json": {
@@ -342,14 +294,6 @@
                 "$ref": "#/components/schemas/ThemeUpdateResponse"
               }
             }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/ThemeUpdateResponse"
-              }
-            }
           }
         }
       }
@@ -364,7 +308,7 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "List boards successful",
             "content": {
               "application/json": {
@@ -374,24 +318,8 @@
               }
             }
           },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/BoardsResponse"
-              }
-            }
-          },
           "401": {
             "description": "Unauthorized",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/BoardsResponse"
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
             "content": {
               "schema": {
                 "$ref": "#/components/schemas/BoardsResponse"
@@ -446,14 +374,6 @@
                 "$ref": "#/components/schemas/AddBoardResponse"
               }
             }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/AddBoardResponse"
-              }
-            }
           }
         }
       }
@@ -475,7 +395,7 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Returning a board successful",
             "content": {
               "application/json": {
@@ -485,24 +405,8 @@
               }
             }
           },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/BoardResponse"
-              }
-            }
-          },
           "401": {
             "description": "Unauthorized",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/BoardResponse"
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
             "content": {
               "schema": {
                 "$ref": "#/components/schemas/BoardResponse"
@@ -590,7 +494,7 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Delete board successful",
             "content": {
               "application/json": {
@@ -644,21 +548,13 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Returning list columns successful",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ColumnsResponse"
                 }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/ColumnsResponse"
               }
             }
           },
@@ -769,7 +665,7 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Returning column successful",
             "content": {
               "application/json": {
@@ -899,7 +795,7 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Deleting column successful",
             "content": {
               "application/json": {
@@ -953,7 +849,7 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Returning list cards successful",
             "content": {
               "application/json": {
@@ -1047,7 +943,7 @@
             "description": "Not Found",
             "content": {
               "schema": {
-                "$ref": "#/components/schemas/AddCardResponse"
+                "$ref": "#/components/schemas/CardsResponse"
               }
             }
           }
@@ -1078,7 +974,7 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Returning card successful",
             "content": {
               "application/json": {
@@ -1179,7 +1075,7 @@
             "description": "Not Found",
             "content": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateCardResponse"
+                "$ref": "#/components/schemas/CardsResponse"
               }
             }
           }
@@ -1279,21 +1175,13 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Deleting card successful",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DeleteCardResponse"
                 }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteCardResponse"
               }
             }
           },
@@ -1338,7 +1226,7 @@
         },
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Send help email successful",
             "content": {
               "application/json": {
@@ -1363,14 +1251,6 @@
                 "$ref": "#/components/schemas/HelpResponse"
               }
             }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/HelpResponse"
-              }
-            }
           }
         }
       }
@@ -1385,7 +1265,7 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Returning list of backgrounds successful",
             "content": {
               "application/json": {
@@ -1395,24 +1275,9 @@
               }
             }
           },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/BackgroundsResponse"
-              }
-            }
-          },
+
           "401": {
             "description": "Unauthorized",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/BackgroundsResponse"
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
             "content": {
               "schema": {
                 "$ref": "#/components/schemas/BackgroundsResponse"
@@ -1473,14 +1338,6 @@
                 "$ref": "#/components/schemas/AddBgResponse"
               }
             }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/AddBgResponse"
-              }
-            }
           }
         }
       }
@@ -1502,21 +1359,13 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Returning list images successful",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BgSerialNumberResponse"
                 }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "schema": {
-                "$ref": "#/components/schemas/BgSerialNumberResponse"
               }
             }
           },
@@ -1563,7 +1412,7 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Returning list images successful",
             "content": {
               "application/json": {
@@ -1631,7 +1480,7 @@
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Returning list images successful",
             "content": {
               "application/json": {
@@ -1678,7 +1527,7 @@
           "userName": {
             "type": "string",
             "description": "User's userName",
-            "example": "Alex Jonson"
+            "example": "Alex"
           },
           "email": {
             "type": "string",
@@ -1688,7 +1537,7 @@
           "password": {
             "type": "string",
             "description": "User's password",
-            "example": "qWe#4567"
+            "example": "qW@1234"
           }
         }
       },
@@ -1718,7 +1567,7 @@
           "password": {
             "type": "string",
             "description": "User's password",
-            "example": "qWe#4567"
+            "example": "qW@1234"
           }
         }
       },
@@ -1729,10 +1578,18 @@
             "type": "string",
             "description": "User's Name"
           },
+          "avatarURL": {
+            "type": "string",
+            "description": "User's avatar"
+          },
           "email": {
             "type": "string",
             "description": "User's email",
             "format": "email"
+          },
+          "theme": {
+            "type": "string",
+            "description": "User's theme"
           }
         }
       },
@@ -1807,6 +1664,10 @@
             "description": "User's email",
             "format": "email"
           },
+          "password": {
+            "type": "string",
+            "description": "User's password"
+          },
           "avatarURL": {
             "type": "string",
             "description": "User's avatar"
@@ -1826,9 +1687,18 @@
       "ThemeUpdateResponse": {
         "type": "object",
         "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
           "theme": {
             "type": "string",
             "description": "User's new theme"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "User's avatar"
           }
         }
       },
@@ -2048,6 +1918,14 @@
           "description": {
             "type": "string",
             "description": "Card's description"
+          },
+          "priority": {
+            "type": "string",
+            "description": "Card's priority"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "Card's deadline"
           }
         }
       },
@@ -2061,6 +1939,14 @@
           "description": {
             "type": "string",
             "description": "Card's description"
+          },
+          "priority": {
+            "type": "string",
+            "description": "Card's priority"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "Card's deadline"
           }
         }
       },
@@ -2102,6 +1988,14 @@
           "description": {
             "type": "string",
             "description": "Card's description"
+          },
+          "priority": {
+            "type": "string",
+            "description": "Card's priority"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "Card's deadline"
           }
         }
       },
@@ -2115,6 +2009,14 @@
           "description": {
             "type": "string",
             "description": "Card's description"
+          },
+          "priority": {
+            "type": "string",
+            "description": "Card's priority"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "Card's deadline"
           }
         }
       },
