@@ -2,10 +2,10 @@ import { Schema, model } from "mongoose";
 import { handleSaveError, setUpdateSettings } from "./hooks.js";
 import Joi from "joi";
 
-const userNameRegexp = /^(?=.*[a-zA-Z])[a-zA-Z0-9$!%*?&]{2,32}$/;
+const userNameRegexp = /^(?=.*[a-zA-Z])[a-zA-Z0-9$!%*?&@]{2,32}$/;
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passwordRegexp =
-  /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,64}$/;
+  /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[$!%*?&@])[a-zA-Z0-9$!%*?&@]{8,64}$/;
 
 const themeList = ["light", "dark", "violet"];
 
