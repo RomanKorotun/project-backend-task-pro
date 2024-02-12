@@ -1,5 +1,5 @@
 import mongoose, { Schema, model } from "mongoose";
-//import Joi from "joi";
+import Joi from "joi";
 //import { handleSaveError, setUpdateSettings } from "./hooks.js";
 const X_List =["1x" ,"2x"]
 const extList =["webp","jpg"];
@@ -33,8 +33,9 @@ const ImgSchema = new Schema(
     },
     { versionKey: false }
   );
-  
-
+ export const helpMailSchema = Joi.object({
+    widthImage: Joi.number().required(), 
+});
 const ImageModel = model('bgr_image', ImgSchema);
 
 export default ImageModel;
