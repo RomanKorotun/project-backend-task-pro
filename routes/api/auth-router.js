@@ -46,13 +46,6 @@ authRouter.put(
   ctrlWrapper(updateUser)
 );
 
-// authRouter.patch(
-//   "/avatars",
-//   authenticate,
-//   upload.single("avatar"),
-//   ctrlWrapper(updateAvatar)
-// );
-
 authRouter.patch("/theme", authenticate, isEmptyBody, ctrlWrapper(updateTheme));
 
 export default authRouter;
