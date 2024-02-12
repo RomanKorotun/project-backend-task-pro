@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 });
 const fileFilter = (req, file, cb) => {
   const extention = file.originalname.split(".").pop();
-console.log('extention', extention)
+
   if (extention !== "jpg" && extention !== "png") {
     cb(
       HttpError(

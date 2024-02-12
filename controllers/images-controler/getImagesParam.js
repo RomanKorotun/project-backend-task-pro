@@ -14,7 +14,7 @@ const getImagesParam = async (req,res)=>{
    if (X) {
       objFind.X = X;  
    }
-   console.log('objFind', objFind)
+
   const images = await ImageModel.find(objFind);
    res.json(images);
 }

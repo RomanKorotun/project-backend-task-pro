@@ -37,7 +37,7 @@ const getID = (fileName) => {
 
     i3 += 1;
   };
- // console.log('filename', filename)
+
 
   const id = fileName.slice(0, i2 );
   let x;
@@ -59,7 +59,7 @@ const getID = (fileName) => {
 };
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //записуємо файл, отриманий з масиву обєктів на cloudinary і видаляємо тимчасовий файл
-const sendCloudinary = async (file, ind, imageArray) => {
+const sendCloudinary = async (file, ind, imageArray,width) => {
   const { path: pathImgSourse, filename } = file;
   //
   const fileName = path.parse(filename);
@@ -90,7 +90,7 @@ const sendCloudinary = async (file, ind, imageArray) => {
   const cloudinaryResult = await cloudinary.uploader.upload(pathImgSourse, {
     public_id: fileName.name,
     folder: folder,
-    width: 700,
+    width,
   });
 
   const img = {

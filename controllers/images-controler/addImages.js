@@ -23,10 +23,11 @@ const writeToBd = async (array) => {
 
 const addImages = async (req, res) => {
   const imageArray = [];
+  const {widthImage}= req.body;
   let pathListImg = "";
   await Promise.all(
     req.files.map(async (file, index) => {
-      pathListImg = await sendCloudinary(file, index + 1, imageArray);
+      pathListImg = await sendCloudinary(file, index + 1, imageArray,widthImage);
     })
   );
   // Очікуємо завершення всіх операцій додавання файлів перед сортуванням
