@@ -7,11 +7,13 @@ const updateUser = async (req, res) => {
   try {
     const { _id } = req.user;
 
-    const { password } = req.body;
+    let hashPassword = null;
 
-    const hashPassword = await bcryptjs.hash(password, 10);
+    if (req.body.password) {
+      hashPassword = await bcryptjs.hash(req.body.password, 10);
+    }
 
-    if (req.file !== undefined) {
+    if (req.file) {
       const { url: avatarUpload } = await cloudinary.uploader.upload(
         req.file.path,
         {
@@ -19,29 +21,54 @@ const updateUser = async (req, res) => {
         }
       );
       await fs.unlink(req.file.path);
+      if (req.body.password) {
+        const result = await User.findByIdAndUpdate(_id, {
+          ...req.body,
+          password: hashPassword,
+          avatarURL: { avatarCustom: avatarUpload },
+        });
+
+        res.json({
+          avatarURL: result.avatarURL,
+          userName: result.userName,
+          email: result.email,
+        });
+        return;
+      }
+
       const result = await User.findByIdAndUpdate(_id, {
         ...req.body,
-        password: hashPassword,
         avatarURL: { avatarCustom: avatarUpload },
       });
+
       res.json({
         avatarURL: result.avatarURL,
         userName: result.userName,
         email: result.email,
-        password: result.password,
+      });
+      return;
+    }
+
+    if (req.body.password) {
+      const result = await User.findByIdAndUpdate(_id, {
+        ...req.body,
+        password: hashPassword,
+      });
+
+      res.json({
+        userName: result.userName,
+        email: result.email,
       });
       return;
     }
 
     const result = await User.findByIdAndUpdate(_id, {
       ...req.body,
-      password: hashPassword,
     });
 
     res.json({
       userName: result.userName,
       email: result.email,
-      password: result.password,
     });
   } catch (error) {
     await fs.unlink(req.file.path);

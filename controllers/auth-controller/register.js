@@ -19,7 +19,7 @@ const signUp = async (req, res) => {
 
   //дефолтний аватар для світлої
   const avatarLight =
-    "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/lt_user.jpg";
+    "https://res.cloudinary.com/drqeo1pu5/image/upload/v1707809622/TaskPro_Avatars/lt_user.jpg";
 
   const newUser = await User.create({
     ...req.body,
