@@ -1,6 +1,6 @@
 import express from "express";
-import { authenticate } from "../../middleware/index.js";
-import { isEmptyBody, isValidId } from "../../middleware/index.js";
+
+import { authenticate, isEmptyBody, isValidId, isBoardPresent } from "../../middleware/index.js";
 import { validateBody } from "../../decorators/validateBody.js";
 import ctrlWrapper from "../../decorators/ctrlWrapper.js";
 import { columnJoiSchema } from "../../models/Column.js";
@@ -16,13 +16,15 @@ const columnsRouter = express.Router();
 
 columnsRouter.use(authenticate);
 
-columnsRouter.get("/:idBoard", ctrlWrapper(getAllColumns));
+columnsRouter.get("/:idBoard",isValidId,isBoardPresent, ctrlWrapper(getAllColumns));
 
-columnsRouter.get("/:idBoard/:id", isValidId, ctrlWrapper(getByIdColumn));
+columnsRouter.get("/:idBoard/:id", isValidId,isBoardPresent, ctrlWrapper(getByIdColumn));
 
 columnsRouter.post(
   "/:idBoard",
+   isValidId,
   isEmptyBody,
+  isBoardPresent,
   validateBody(columnJoiSchema),
   ctrlWrapper(addColumn)
 );
@@ -31,6 +33,7 @@ columnsRouter.patch(
   "/:idBoard/:id",
   isValidId,
   isEmptyBody,
+  isBoardPresent,
   validateBody(columnJoiSchema),
   ctrlWrapper(updateByIdColumn)
 );
