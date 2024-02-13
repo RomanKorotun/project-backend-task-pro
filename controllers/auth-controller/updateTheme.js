@@ -13,15 +13,15 @@ const updateTheme = async (req, res) => {
     switch (theme) {
       case "dark":
         avatarDark =
-          "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/dk_user.jpg";
+          "https://res.cloudinary.com/drqeo1pu5/image/upload/v1707809622/TaskPro_Avatars/dk_user.jpg";
         break;
       case "violet":
         avatarViolet =
-          "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/vl_user.jpg";
+          "https://res.cloudinary.com/drqeo1pu5/image/upload/v1707809622/TaskPro_Avatars/vl_user.jpg";
         break;
       default:
         avatarLight =
-          "http://res.cloudinary.com/drj0am35a/image/upload/v1707058150/lt_user.jpg";
+          "https://res.cloudinary.com/drqeo1pu5/image/upload/v1707809622/TaskPro_Avatars/lt_user.jpg";
     }
   }
 
