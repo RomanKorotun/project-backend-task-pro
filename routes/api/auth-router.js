@@ -41,7 +41,6 @@ authRouter.put(
   "/users",
   authenticate,
   upload.single("avatar"),
-  isEmptyBody,
   validateBody(userUpdateSchema),
   ctrlWrapper(updateUser)
 );

@@ -2,9 +2,16 @@ import { User } from "../../models/User.js";
 import bcryptjs from "bcryptjs";
 import cloudinary from "../../helpers/cloudinary.js";
 import fs from "fs/promises";
+import { HttpError } from "../../helpers/index.js";
 
 const updateUser = async (req, res) => {
   try {
+    const { length } = Object.keys(req.body);
+
+    if (req.file === undefined && length === 0) {
+      throw HttpError(400);
+    }
+
     const { _id } = req.user;
 
     let hashPassword = null;
@@ -71,7 +78,10 @@ const updateUser = async (req, res) => {
       email: result.email,
     });
   } catch (error) {
-    await fs.unlink(req.file.path);
+    if (req.file) {
+      await fs.unlink(req.file.path);
+    }
+
     throw error;
   }
 };
