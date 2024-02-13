@@ -6,7 +6,7 @@ const addCard = async (req, res) => {
 
   const result = await Card.create({
     ...req.body,
-    priority,
+     priority,
     deadline,
     owner: idColumn,
   });

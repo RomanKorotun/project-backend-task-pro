@@ -33,6 +33,7 @@ cardsRouter.get("/:idColumn/:id", isValidId, ctrlWrapper(getByIdCard));
 cardsRouter.post(
   "/:idColumn",
   isEmptyBody,
+  isValidId,
   validateBody(cardAddSchema),
   ctrlWrapper(addCard)
 );
