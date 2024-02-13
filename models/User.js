@@ -2,10 +2,10 @@ import { Schema, model } from "mongoose";
 import { handleSaveError, setUpdateSettings } from "./hooks.js";
 import Joi from "joi";
 
-const userNameRegexp = /^(?=.*[a-zA-Z])[a-zA-Z0-9$!%*?&@]{2,32}$/;
-const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const passwordRegexp =
-  /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[$!%*?&@])[a-zA-Z0-9$!%*?&@]{8,64}$/;
+const userNameRegexp =
+  /^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
+const emailRegexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const passwordRegexp = /^[a-zA-Z0-9!@#$%^&*]{8,64}/;
 
 const themeList = ["light", "dark", "violet"];
 
@@ -59,21 +59,12 @@ const User = model("user", userSchema);
 const userRegisterSchema = Joi.object({
   userName: Joi.string()
     .pattern(userNameRegexp)
-    .message(
-      "Invalid user Name. Name must contain Latin letters only and include from 2 to 32 characters. Name can also contain numbers and symbols (@,$,!,%,*,?,&)"
-    )
+    .message("Invalid user Name")
     .required(),
-  email: Joi.string()
-    .pattern(emailRegexp)
-    .message(
-      "Invalid email. Email contains Latin letters, numbers, only one symbol '@' and a 'period' (in the part with the hostname)"
-    )
-    .required(),
+  email: Joi.string().pattern(emailRegexp).message("Invalid email").required(),
   password: Joi.string()
     .pattern(passwordRegexp)
-    .message(
-      "Invalid password. Password must contain Latin letters, numbers, symbols (@,$,!,%,*,?,&) only and include from 8 to 64 characters. Can't contain spaces"
-    )
+    .message("Invalid password")
     .required(),
 });
 
@@ -86,21 +77,9 @@ const userLogSchema = Joi.object({
 });
 
 const userUpdateSchema = Joi.object({
-  userName: Joi.string()
-    .pattern(userNameRegexp)
-    .message(
-      "Invalid user Name. Name must contain Latin letters only and include from 2 to 32 characters. Name can also contain numbers and symbols (@,$,!,%,*,?,&)"
-    ),
-  email: Joi.string()
-    .pattern(emailRegexp)
-    .message(
-      "Invalid email. Email contains Latin letters, numbers, only one symbol '@' and a 'period' (in the part with the hostname)"
-    ),
-  password: Joi.string()
-    .pattern(passwordRegexp)
-    .message(
-      "Invalid password. Password must contain Latin letters, numbers, symbols (@,$,!,%,*,?,&) only and include from 8 to 64 characters. Can't contain spaces"
-    ),
+  userName: Joi.string().pattern(userNameRegexp).message("Invalid user Name"),
+  email: Joi.string().pattern(emailRegexp).message("Invalid email"),
+  password: Joi.string().pattern(passwordRegexp).message("Invalid password"),
 });
 
 export { User, userRegisterSchema, userLogSchema, userUpdateSchema };
