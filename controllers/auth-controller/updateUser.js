@@ -63,6 +63,7 @@ const updateUser = async (req, res) => {
       });
 
       res.json({
+        avatarURL: result.avatarURL,
         userName: result.userName,
         email: result.email,
       });
@@ -74,6 +75,7 @@ const updateUser = async (req, res) => {
     });
 
     res.json({
+      avatarURL: result.avatarURL,
       userName: result.userName,
       email: result.email,
     });
