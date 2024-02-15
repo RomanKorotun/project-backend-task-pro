@@ -11,7 +11,6 @@ import logOut from "../../controllers/auth-controller/logout.js";
 import authenticate from "../../middleware/authenticate.js";
 import currentUser from "../../controllers/auth-controller/current.js";
 import updateUser from "../../controllers/auth-controller/updateUser.js";
-// import updateAvatar from "../../controllers/auth-controller/updateAvatar.js";
 import upload from "../../middleware/upload.js";
 import updateTheme from "../../controllers/auth-controller/updateTheme.js";
 import ctrlWrapper from "../../decorators/ctrlWrapper.js";
