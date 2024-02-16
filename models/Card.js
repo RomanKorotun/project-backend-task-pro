@@ -37,10 +37,14 @@ cardSchema.pre("findOneAndUpdate", setUpdateSettings);
 cardSchema.post("findOneAndUpdate", handleSaveError);
 
 export const cardAddSchema = Joi.object({
-  title: Joi.string().min(3).required(),
-  // .messages({ "any.required": "missing required 'title' field" }),
-  description: Joi.string().min(6).required(),
-  // .messages({ "any.required": "missing required 'description' field" }),
+  title: Joi.string()
+    .min(3)
+    .required()
+    .messages({ "any.required": "missing required 'title' field" }),
+  description: Joi.string()
+    .min(6)
+    .required()
+    .messages({ "any.required": "missing required 'description' field" }),
   priority: Joi.string().valid(...priorityList),
   deadline: Joi.string(),
 });
