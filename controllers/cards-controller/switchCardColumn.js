@@ -8,7 +8,7 @@ const switchCardColumn = async (req, res) => {
       _id: id,
       owner: idColumn,
     },
-    req.body
+    { owner: req.body.owner }
   );
 
   res.json(result);
